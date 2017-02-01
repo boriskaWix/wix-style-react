@@ -3,6 +3,11 @@ import {storiesOf} from '@kadira/storybook';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
 import Readme from '../../src/Button/README.md';
+import InteractiveCodeExample from '../utils/Components/InteractiveCodeExample';
+import ButtonStandard from './ButtonStandard';
+import ButtonWhite from './ButtonWhite';
+import ButtonIcon from './ButtonIcon';
+
 
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw!./ExampleStandard';
@@ -29,7 +34,7 @@ import ExampleAnimation from './ExampleAnimation';
 import ExampleAnimationRaw from '!raw!./ExampleAnimation';
 
 storiesOf('3. Buttons', module)
-  .add('3.1 Standard', () => (
+  .add('3.0 Examples', () => (
     <div>
       <Markdown source={Readme}/>
 
@@ -66,5 +71,30 @@ storiesOf('3. Buttons', module)
       <CodeExample title="Animation" code={ExampleAnimationRaw}>
         <ExampleAnimation/>
       </CodeExample>
+
+    </div>
+  ))
+  .add('3.1 Standard', () => (
+    <div>
+      <h1>3.1 Standard</h1>
+      <InteractiveCodeExample title="Customize a <Button/>">
+        <ButtonStandard/>
+      </InteractiveCodeExample>
+    </div>
+  ))
+  .add('3.2 White', () => (
+    <div>
+      <h1>3.1 White</h1>
+      <InteractiveCodeExample title="Customize a <Button/>">
+        <ButtonWhite/>
+      </InteractiveCodeExample>
+    </div>
+  ))
+  .add('3.3 Icon Only', () => (
+    <div>
+      <h1>3.3 Icon Only</h1>
+      <InteractiveCodeExample title="Customize a <Button/>">
+        <ButtonIcon/>
+      </InteractiveCodeExample>
     </div>
   ));

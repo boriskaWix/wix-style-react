@@ -16,6 +16,11 @@
     outline: none;
 
     transition: background-color 100ms linear;
+    &.icon-only
+    {
+        padding: 0 11px;
+        width: $height;
+    }
 }
 
 .button>.inner {
@@ -275,6 +280,11 @@
     border-radius: $height / 2;
     font-size: 14px;
     padding: 0px 20px;
+    &.icon-only
+    {
+        padding: 0px 9px;
+        width: $height;
+    }
 }
 
 .heightlarge
@@ -282,4 +292,9 @@
     $height: 42px;
     height: $height;
     border-radius: $height / 2;
+    &.icon-only
+    {
+        padding: 0px 13px;
+        width: $height;
+    }
 }

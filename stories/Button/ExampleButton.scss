@@ -1,0 +1,27 @@
+@import '../../src/common.scss';
+
+.option {
+  margin-bottom: 10px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.form {
+  display: flex;
+  align-items: top;
+  padding: 20px;
+}
+
+.input { width: 60%; }
+.output {
+  width: 35%;
+  background-color: silver;
+}
+
+.example-wrapper {
+  padding: 20px;
+}
