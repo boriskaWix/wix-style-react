@@ -40,7 +40,8 @@
 .button.fullblue.disabled,
 .button.fullred.disabled,
 .button.fullgreen.disabled,
-.button.fullpurple.disabled
+.button.fullpurple.disabled,
+.button.emptybluesecondary.disabled
 {
     pointer-events:none;
     background-color: $GR40 !important;
@@ -50,7 +51,6 @@
 
 .button.emptyred.disabled,
 .button.emptygreen.disabled,
-.button.emptybluesecondary.disabled,
 .button.emptyblue.disabled,
 .button.emptypurple.disabled
 {
@@ -65,6 +65,14 @@
     background-color: #cbd3dc;
     border: none;
     color: $D80;
+}
+
+.button.transparentwhite.disabled
+{
+    pointer-events: none;
+    background-color: transparent;
+    border-color: $GR40;
+    color: $GR40;
 }
 
 .fullblue
@@ -106,6 +114,28 @@
     background-color: #fff;
     border-color: #fff;
     color: #3899ec;
+}
+
+
+.transparentwhite
+{
+    background-color: transparent;
+    border-color: $D80;
+    color: $D80;
+}
+
+.transparentwhite:hover, .transparentwhite.hover
+{
+    background-color: $B50;
+    border-color: $B50;
+    color: $B10;
+}
+
+.transparentwhite:active, .transparentwhite.active
+{
+    background-color: $B40;
+    border-color: $B40;
+    color: $B10;
 }
 
  .emptyblue

@@ -3,11 +3,12 @@ import React, {Component, PropTypes} from 'react';
 import Template from './Template';
 import RadioGroup from '../../src/RadioGroup';
 import Label from '../../src/Label';
+import Input from '../../src/Input';
 import ToggleSwitch from '../../src/ToggleSwitch';
 
 import styles from './ExampleButton.scss';
 
-class ButtonIcon extends Component {
+class ButtonError extends Component {
 
   static propTypes = {
     onChange: PropTypes.func
@@ -15,9 +16,8 @@ class ButtonIcon extends Component {
 
   state = {
     disabled: false,
-    theme: 'emptybluesecondary',
-    iconOnly: true,
-    height: 'medium'
+    theme: 'fullred',
+    text: 'Click On Me'
   };
 
   render() {
@@ -33,10 +33,8 @@ class ButtonIcon extends Component {
                 value={this.state.theme}
                 onChange={theme => this.setState({theme})}
               >
-                <RadioGroup.Radio value="fullblue">Standard Primary</RadioGroup.Radio>
-                <RadioGroup.Radio value="transparentwhite">Standard Secondary</RadioGroup.Radio>
-                <RadioGroup.Radio value="emptybluesecondary-a">White Primary</RadioGroup.Radio>
-                <RadioGroup.Radio value="emptybluesecondary-b">White Secondary</RadioGroup.Radio>
+                <RadioGroup.Radio value="fullred">Primary</RadioGroup.Radio>
+                <RadioGroup.Radio value="emptyred">Secondary</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>
@@ -53,16 +51,13 @@ class ButtonIcon extends Component {
           </div>
 
           <div className={styles.option}>
-            <Label>Size</Label>
+            <Label>Text</Label>
             <div className={styles.flex}>
-              <RadioGroup
-                display="horizontal"
-                value={this.state.height}
-                onChange={height => this.setState({height})}
-              >
-                <RadioGroup.Radio value="small">Small</RadioGroup.Radio>
-                <RadioGroup.Radio value="medium">Regular</RadioGroup.Radio>
-              </RadioGroup>
+              <Input
+                size="small"
+                value={this.state.text}
+                onChange={e => this.setState({text: e.target.value})}
+              />
             </div>
           </div>
 
@@ -78,4 +73,4 @@ class ButtonIcon extends Component {
   }
 }
 
-export default ButtonIcon;
+export default ButtonError;

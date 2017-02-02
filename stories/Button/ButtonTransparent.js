@@ -8,7 +8,7 @@ import ToggleSwitch from '../../src/ToggleSwitch';
 
 import styles from './ExampleButton.scss';
 
-class ButtonWhite extends Component {
+class ButtonTransparent extends Component {
 
   static propTypes = {
     onChange: PropTypes.func
@@ -16,7 +16,7 @@ class ButtonWhite extends Component {
 
   state = {
     disabled: false,
-    theme: 'emptybluesecondary',
+    theme: 'transparent',
     text: 'Click On Me'
   };
 
@@ -24,20 +24,6 @@ class ButtonWhite extends Component {
     return (
       <from className={styles.form}>
         <div className={styles.input}>
-
-          <div className={styles.option}>
-            <Label>Type</Label>
-            <div className={styles.flex}>
-              <RadioGroup
-                display="horizontal"
-                value={this.state.theme}
-                onChange={theme => this.setState({theme})}
-              >
-                <RadioGroup.Radio value="emptybluesecondary">Primary</RadioGroup.Radio>
-                <RadioGroup.Radio value="transparentwhite">Secondary</RadioGroup.Radio>
-              </RadioGroup>
-            </div>
-          </div>
 
           <div className={styles.option}>
             <Label>Disabled</Label>
@@ -73,4 +59,4 @@ class ButtonWhite extends Component {
   }
 }
 
-export default ButtonWhite;
+export default ButtonTransparent;

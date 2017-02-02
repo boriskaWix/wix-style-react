@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import Button from 'wix-style-react/Button';
-import {Check} from '../../src/Icons';
+import {Close} from '../../src/Icons';
 
 export default class Form extends Component {
 
@@ -35,8 +35,8 @@ export default class Form extends Component {
         disabled={this.props.disabled}
         height={this.props.height}
         theme={this.props.theme}
-        iconOnly={this.props.iconOnly}>
-        {this.props.iconOnly ? <Check size={iconSize}/> : this.props.text}
+        iconOnly={!!this.props.iconOnly}>
+        {this.props.iconOnly ? <Close size={iconSize}/> : this.props.text}
       </Button>
     );
   }

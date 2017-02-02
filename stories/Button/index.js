@@ -7,6 +7,11 @@ import InteractiveCodeExample from '../utils/Components/InteractiveCodeExample';
 import ButtonStandard from './ButtonStandard';
 import ButtonWhite from './ButtonWhite';
 import ButtonIcon from './ButtonIcon';
+import ButtonError from './ButtonError';
+import ButtonPremium from './ButtonPremium';
+import ButtonTransparent from './ButtonTransparent';
+import ButtonClose from './ButtonClose';
+import ButtonTextLink from './ButtonTextLink';
 
 
 import ExampleStandard from './ExampleStandard';
@@ -95,6 +100,46 @@ storiesOf('3. Buttons', module)
       <h1>3.3 Icon Only</h1>
       <InteractiveCodeExample title="Customize a <Button/>">
         <ButtonIcon/>
+      </InteractiveCodeExample>
+    </div>
+  ))
+  .add('3.4 Error', () => (
+    <div>
+      <h1>3.4 Error</h1>
+      <InteractiveCodeExample title="Customize a <Button/>">
+        <ButtonError/>
+      </InteractiveCodeExample>
+    </div>
+  ))
+  .add('3.5 Premium', () => (
+    <div>
+      <h1>3.5 Premium</h1>
+      <InteractiveCodeExample title="Customize a <Button/>">
+        <ButtonPremium/>
+      </InteractiveCodeExample>
+    </div>
+  ))
+  .add('3.6 Transparent', () => (
+    <div>
+      <h1>3.6 Transparent</h1>
+      <InteractiveCodeExample title="Customize a <Button/>">
+        <ButtonTransparent/>
+      </InteractiveCodeExample>
+    </div>
+  ))
+  .add('3.7 Close', () => (
+    <div>
+      <h1>3.7 Close</h1>
+      <InteractiveCodeExample title="Customize a <Button/>">
+        <ButtonClose/>
+      </InteractiveCodeExample>
+    </div>
+  ))
+  .add('3.8 Text Link', () => (
+    <div>
+      <h1>3.8 Text Link</h1>
+      <InteractiveCodeExample title="Customize a <Button/>">
+        <ButtonTextLink/>
       </InteractiveCodeExample>
     </div>
   ));

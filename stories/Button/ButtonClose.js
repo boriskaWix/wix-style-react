@@ -33,10 +33,9 @@ class ButtonIcon extends Component {
                 value={this.state.theme}
                 onChange={theme => this.setState({theme})}
               >
-                <RadioGroup.Radio value="fullblue">Standard Primary</RadioGroup.Radio>
-                <RadioGroup.Radio value="transparentwhite">Standard Secondary</RadioGroup.Radio>
-                <RadioGroup.Radio value="emptybluesecondary-a">White Primary</RadioGroup.Radio>
-                <RadioGroup.Radio value="emptybluesecondary-b">White Secondary</RadioGroup.Radio>
+                <RadioGroup.Radio value="fullblue">Standard</RadioGroup.Radio>
+                <RadioGroup.Radio value="transparentwhite">Dark</RadioGroup.Radio>
+                <RadioGroup.Radio value="emptybluesecondary-b">Transparent</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>
@@ -60,8 +59,8 @@ class ButtonIcon extends Component {
                 value={this.state.height}
                 onChange={height => this.setState({height})}
               >
-                <RadioGroup.Radio value="small">Small</RadioGroup.Radio>
                 <RadioGroup.Radio value="medium">Regular</RadioGroup.Radio>
+                <RadioGroup.Radio value="large">Large</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>
