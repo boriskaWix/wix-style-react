@@ -153,41 +153,30 @@
 {
     background-color: $P10;
     border-color: $P10;
-    color: #fff;
-}
-
-.fullpurple:hover, .fullpurple.hover
-{
-    background-color: $P20;
-    border-color: $P20;
-}
-
-.fullpurple:active, .fullpurple.active
-{
-    background-color: $P00;
-    border-color: $P00;
-    color: #fff;
+    color: $D80;
 }
 
 .emptypurple
 {
-    background-color: #fff;
+    background-color: transparent;
     border-color: $P10;
-    color: $P10;
+    color: $P00;
 }
 
-.emptypurple:hover, .emptypurple.hover
+.emptypurple:hover, .emptypurple.hover,
+.fullpurple:hover, .fullpurple.hover
 {
     background-color: $P20;
     border-color: $P20;
-    color: #fff;
+    color: $D80;
 }
 
-.emptypurple:active, .emptypurple.active
+.emptypurple:active, .emptypurple.active,
+.fullpurple:active, .fullpurple.active
 {
-    background-color: $P00;
-    border-color: $P00;
-    color: #fff;
+    background-color: $P10;
+    border-color: $P10;
+    color: $D80;
 }
 
 .fullgreen
