@@ -5,7 +5,7 @@ import WixComponent from '../WixComponent';
 
 class Button extends WixComponent {
   render() {
-    const {theme, hover, active, disabled, height, onClick, children, iconOnly} = this.props;
+    const {theme, hover, active, disabled, height, onClick, children} = this.props;
 
     const className = classNames({
       [styles.button]: true,
@@ -13,7 +13,6 @@ class Button extends WixComponent {
       [styles.hover]: hover,
       [styles.active]: active,
       [styles.disabled]: disabled,
-      [styles['icon-only']]: iconOnly,
       [styles[`height${height}`]]: height !== 'medium'
     });
 
@@ -43,7 +42,6 @@ Button.propTypes = {
   hover: React.PropTypes.bool,
   active: React.PropTypes.bool,
   disabled: React.PropTypes.bool,
-  iconOnly: React.PropTypes.bool,
   onClick: React.PropTypes.func,
   children: React.PropTypes.any
 };

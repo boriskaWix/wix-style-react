@@ -16,11 +16,6 @@
     outline: none;
 
     transition: background-color 100ms linear;
-    &.icon-only
-    {
-        padding: 0 11px;
-        width: $height;
-    }
 }
 
 .button>.inner {
@@ -40,8 +35,7 @@
 .button.fullblue.disabled,
 .button.fullred.disabled,
 .button.fullgreen.disabled,
-.button.fullpurple.disabled,
-.button.emptybluesecondary.disabled
+.button.fullpurple.disabled
 {
     pointer-events:none;
     background-color: $GR40 !important;
@@ -51,6 +45,7 @@
 
 .button.emptyred.disabled,
 .button.emptygreen.disabled,
+.button.emptybluesecondary.disabled,
 .button.emptyblue.disabled,
 .button.emptypurple.disabled
 {
@@ -65,14 +60,6 @@
     background-color: #cbd3dc;
     border: none;
     color: $D80;
-}
-
-.button.transparentwhite.disabled
-{
-    pointer-events: none;
-    background-color: transparent;
-    border-color: $GR40;
-    color: $GR40;
 }
 
 .fullblue
@@ -116,40 +103,18 @@
     color: #3899ec;
 }
 
-
-.transparentwhite
+.emptyblue
 {
-    background-color: transparent;
-    border-color: $D80;
-    color: $D80;
+    background-color: #fff;
+    border-color: #5babef;
+    color: #3899ec;
 }
 
-.transparentwhite:hover, .transparentwhite.hover
+.emptyblue:hover, .emptyblue.hover
 {
-    background-color: $B50;
-    border-color: $B50;
-    color: $B10;
-}
-
-.transparentwhite:active, .transparentwhite.active
-{
-    background-color: $B40;
-    border-color: $B40;
-    color: $B10;
-}
-
- .emptyblue
- {
-     background-color: #fff;
-     border-color: #5babef;
-     color: #3899ec;
- }
-
- .emptyblue:hover, .emptyblue.hover
- {
-     background-color: $paletteB2;
-     border-color: $paletteB2;
-     color: #fff;
+    background-color: $paletteB2;
+    border-color: $paletteB2;
+    color: #fff;
 }
 
 .emptyblue:active, .emptyblue.active
@@ -310,11 +275,6 @@
     border-radius: $height / 2;
     font-size: 14px;
     padding: 0px 20px;
-    &.icon-only
-    {
-        padding: 0px 9px;
-        width: $height;
-    }
 }
 
 .heightlarge
@@ -322,9 +282,4 @@
     $height: 42px;
     height: $height;
     border-radius: $height / 2;
-    &.icon-only
-    {
-        padding: 0px 13px;
-        width: $height;
-    }
 }
