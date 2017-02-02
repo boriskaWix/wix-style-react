@@ -16,7 +16,7 @@ class ButtonWhite extends Component {
 
   state = {
     disabled: false,
-    theme: 'emptybluesecondary',
+    theme: 'whiteblueprimary',
     text: 'Click On Me'
   };
 
@@ -33,8 +33,8 @@ class ButtonWhite extends Component {
                 value={this.state.theme}
                 onChange={theme => this.setState({theme})}
               >
-                <RadioGroup.Radio value="emptybluesecondary">Primary</RadioGroup.Radio>
-                <RadioGroup.Radio value="transparentwhite">Secondary</RadioGroup.Radio>
+                <RadioGroup.Radio value="whiteblueprimary">Primary</RadioGroup.Radio>
+                <RadioGroup.Radio value="whitebluesecondary">Secondary</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>

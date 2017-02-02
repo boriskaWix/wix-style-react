@@ -62,7 +62,7 @@
 }
 
 
-/* <freeze 3.1 */
+/* <freeze */
 .fullblue {
     background-color: $B10;
     border-color: $B10;
@@ -77,12 +77,26 @@
     color: $D80;
 }
 
+.whitebluesecondary:hover, .whitebluesecondary.hover,
+.whiteblueprimary:hover, .whiteblueprimary.hover{
+    background-color: $B50;
+    border-color: $B50;
+    color: $B10;
+}
+
 .fullblue:active, .fullblue.active,
 .transparentblue:active, .transparentblue.active,
 .whiteblue:active, .whiteblue.active {
     background-color: $B10;
     border-color: $B10;
     color: $D80;
+}
+
+.whiteblueprimary:active, .whiteblueprimary.active,
+.whitebluesecondary:active, .whitebluesecondary.active {
+    background-color: $B40;
+    border-color: $B40;
+    color: $B10;
 }
 
 .button.fullblue.disabled
@@ -92,7 +106,7 @@
     background-color: $GR40;
     color: $D80;
 }
-/* </freeze 3.1 */
+/* </freeze */
 
 .emptybluesecondary
 {
@@ -280,7 +294,7 @@
     color: $D80;
 }
 
-/* <freeze 3.1 */
+/* <freeze */
 .transparentblue {
     background-color: transparent;
     border-color: $B10;
@@ -294,15 +308,29 @@
     border-color: $GR40;
     color: $GR40;
 }
-/* </freeze 3.1 */
 
-/* <freeze 3.1 */
+.button.whiteblueprimary.disabled {
+    pointer-events: none;
+    background-color: $GR40;
+    border-color: $GR40;
+    color: $D80;
+}
+
+.button.whitebluesecondary.disabled {
+    pointer-events: none;
+    background-color: transparent;
+    border-color: $GR40;
+    color: $GR40;
+}
+
+.whiteblueprimary,
+.whitebluesecondary,
 .whiteblue {
     background-color: $D80;
     border-color: $D80;
     color: $B10;
 }
-/* </freeze 3.1 */
+/* </freeze */
 
 .heightsmall
 {
