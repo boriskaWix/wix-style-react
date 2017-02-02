@@ -17,7 +17,8 @@ class ButtonStandard extends Component {
   state = {
     disabled: false,
     theme: 'fullblue',
-    text: 'Click On Me'
+    text: 'Click On Me',
+    height: 'medium'
   };
 
   render() {
@@ -34,8 +35,8 @@ class ButtonStandard extends Component {
                 onChange={theme => this.setState({theme})}
               >
                 <RadioGroup.Radio value="fullblue">Primary</RadioGroup.Radio>
-                <RadioGroup.Radio value="emptyblue">Secondary</RadioGroup.Radio>
-                <RadioGroup.Radio value="transparent">Secondary on grey</RadioGroup.Radio>
+                <RadioGroup.Radio value="transparentblue">Secondary</RadioGroup.Radio>
+                <RadioGroup.Radio value="whiteblue">Secondary on grey</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>
@@ -62,9 +63,23 @@ class ButtonStandard extends Component {
             </div>
           </div>
 
+          <div className={styles.option}>
+            <Label>Size</Label>
+            <div className={styles.flex}>
+              <RadioGroup
+                display="horizontal"
+                value={this.state.height}
+                onChange={height => this.setState({height})}
+              >
+                <RadioGroup.Radio value="small">Small</RadioGroup.Radio>
+                <RadioGroup.Radio value="medium">Regular</RadioGroup.Radio>
+                <RadioGroup.Radio value="large">Large</RadioGroup.Radio>
+              </RadioGroup>
+            </div>
+          </div>
         </div>
 
-        <div className={styles[this.state.theme === 'transparent' ? 'output-lightblue' : 'output']}>
+        <div className={styles[this.state.theme === 'whiteblue' ? 'output-lightblue' : 'output']}>
           <div className={`${styles[this.state.theme]} ${styles.exampleWrapper}`}>
             <Template {...this.state} onChange={this.props.onChange}/>
           </div>

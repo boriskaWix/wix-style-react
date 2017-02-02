@@ -1,12 +1,12 @@
 @import '../common.scss';
 
 .button {
-    @include FontRoman();
+    @include FontLight();
     $height: 36px;
     height: $height;
     border-radius: $height / 2;
     font-size: 16px;
-    padding: 0 24px;
+    padding: 0 23px;
 
     box-sizing:border-box;
     -webkit-font-smoothing: antialiased;
@@ -32,7 +32,6 @@
     color: inherit;
 }
 
-.button.fullblue.disabled,
 .button.fullred.disabled,
 .button.fullgreen.disabled,
 .button.fullpurple.disabled
@@ -62,25 +61,38 @@
     color: $D80;
 }
 
-.fullblue
-{
+
+/* <freeze 3.1 */
+.fullblue {
     background-color: $B10;
     border-color: $B10;
-    color: #fff;
+    color: $D80;
 }
 
-.fullblue:hover, .fullblue.hover
-{
-    background-color: $paletteB2;
-    border-color: $paletteB2;
+.fullblue:hover, .fullblue.hover,
+.transparentblue:hover, .transparentblue.hover,
+.whiteblue:hover, .whiteblue.hover {
+    background-color: $B20;
+    border-color: $B20;
+    color: $D80;
 }
 
-.fullblue:active, .fullblue.active
-{
-    background-color: $B00;
-    border-color: $B00;
-    color: #fff;
+.fullblue:active, .fullblue.active,
+.transparentblue:active, .transparentblue.active,
+.whiteblue:active, .whiteblue.active {
+    background-color: $B10;
+    border-color: $B10;
+    color: $D80;
 }
+
+.button.fullblue.disabled
+{
+    pointer-events: none;
+    border-color: $GR40;
+    background-color: $GR40;
+    color: $D80;
+}
+/* </freeze 3.1 */
 
 .emptybluesecondary
 {
@@ -268,13 +280,37 @@
     color: $D80;
 }
 
+/* <freeze 3.1 */
+.transparentblue {
+    background-color: transparent;
+    border-color: $B10;
+    color: $B10;
+}
+
+.button.transparentblue.disabled,
+.button.whiteblue.disabled {
+    pointer-events: none;
+    background-color: transparent;
+    border-color: $GR40;
+    color: $GR40;
+}
+/* </freeze 3.1 */
+
+/* <freeze 3.1 */
+.whiteblue {
+    background-color: $D80;
+    border-color: $D80;
+    color: $B10;
+}
+/* </freeze 3.1 */
+
 .heightsmall
 {
     $height: 30px;
     height: $height;
     border-radius: $height / 2;
     font-size: 14px;
-    padding: 0px 20px;
+    padding: 0px 17px;
 }
 
 .heightlarge
@@ -282,4 +318,5 @@
     $height: 42px;
     height: $height;
     border-radius: $height / 2;
+    padding: 0px 29px;
 }
