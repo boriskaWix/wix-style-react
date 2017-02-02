@@ -21,6 +21,13 @@ class ButtonIcon extends Component {
   };
 
   render() {
+    let backgroundStyle = 'output-lightblue';
+    if (['fullblue', 'transparentwhite'].indexOf(this.state.theme) >= 0) {
+      backgroundStyle = 'output-white';
+    } else if (['emptybluesecondary-a', 'emptybluesecondary-b'].indexOf(this.state.theme) >= 0) {
+      backgroundStyle = 'output-darkblue';
+    }
+
     return (
       <from className={styles.form}>
         <div className={styles.input}>
@@ -33,6 +40,7 @@ class ButtonIcon extends Component {
                 value={this.state.theme}
                 onChange={theme => this.setState({theme})}
               >
+                <RadioGroup.Radio value="emptypurple">Grey Background</RadioGroup.Radio>
                 <RadioGroup.Radio value="fullblue">Standard Primary</RadioGroup.Radio>
                 <RadioGroup.Radio value="transparentwhite">Standard Secondary</RadioGroup.Radio>
                 <RadioGroup.Radio value="emptybluesecondary-a">White Primary</RadioGroup.Radio>
@@ -68,7 +76,7 @@ class ButtonIcon extends Component {
 
         </div>
 
-        <div className={styles.output}>
+        <div className={styles[backgroundStyle]}>
           <div className={`${styles[this.state.theme]} ${styles.exampleWrapper}`}>
             <Template {...this.state} onChange={this.props.onChange}/>
           </div>

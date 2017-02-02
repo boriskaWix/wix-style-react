@@ -19,7 +19,22 @@
 .input { width: 60%; }
 .output {
   width: 35%;
-  background-color: #000000;
+  background-color: $GR30;
+}
+
+.output-lightblue
+{
+  background-color: $D70;
+}
+
+.output-darkblue
+{
+  background-color: $D10;
+}
+
+.output-white
+{
+  background-color: $D80;
 }
 
 .example-wrapper {

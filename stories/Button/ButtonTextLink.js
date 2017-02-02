@@ -35,7 +35,7 @@ class ButtonTextLink extends Component {
               >
                 <RadioGroup.Radio value="emptybluesecondary">Regular</RadioGroup.Radio>
                 <RadioGroup.Radio value="transparentwhite">Dark Background</RadioGroup.Radio>
-                <RadioGroup.Radio value="transparentwhite">Dark Background Underline</RadioGroup.Radio>
+                <RadioGroup.Radio value="transparentwhiteunderline">Dark Background Underline</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>
@@ -53,7 +53,7 @@ class ButtonTextLink extends Component {
 
         </div>
 
-        <div className={styles.output}>
+        <div className={styles[this.state.theme === 'emptybluesecondary' ? 'output' : 'output-darkblue']}>
           <div className={`${styles[this.state.theme]} ${styles.exampleWrapper}`}>
             <Template {...this.state} onChange={this.props.onChange}/>
           </div>

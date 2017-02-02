@@ -64,7 +64,7 @@ class ButtonStandard extends Component {
 
         </div>
 
-        <div className={styles.output}>
+        <div className={styles[this.state.theme === 'transparent' ? 'output-lightblue' : 'output']}>
           <div className={`${styles[this.state.theme]} ${styles.exampleWrapper}`}>
             <Template {...this.state} onChange={this.props.onChange}/>
           </div>
