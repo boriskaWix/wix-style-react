@@ -29,8 +29,8 @@ const options = [
 ];
 
 class CustomValuesInDropdown extends React.Component {
-  onSelect(value) {
-    console.log(`Selected ${value}`);
+  onSelect(option) {
+    console.log(`Selected ${option}`);
   }
 
   valueParser(option) {
