@@ -34,12 +34,11 @@
 
 .button.fullred.disabled,
 .button.fullgreen.disabled,
-.button.fullpurple.disabled
-{
-    pointer-events:none;
-    background-color: $GR40 !important;
-    border-color: $GR40 !important;
-    color: #fff !important;
+.button.fullpurple.disabled {
+    pointer-events: none;
+    background-color: $GR40;
+    border-color: $GR40;
+    color: $D80;
 }
 
 .button.emptyred.disabled,
@@ -48,7 +47,7 @@
 .button.emptyblue.disabled,
 .button.emptypurple.disabled
 {
-    pointer-events:none;
+    pointer-events: none;
     background-color: transparent;
     border-color: $GR40;
     color: $GR40;
@@ -236,7 +235,7 @@
 {
     background-color: $R10;
     border-color: $R10;
-    color: #fff;
+    color: $D80;
 }
 
 .fullred:hover, .fullred.hover
@@ -247,30 +246,29 @@
 
 .fullred:active, .fullred.active
 {
-    background-color: $R00;
-    border-color: $R00;
-    color: #fff;
+    background-color: $R10;
+    border-color: $R10;
 }
 
 .emptyred
 {
-    background-color: #fff;
+    background-color: transparent;
     border-color: $R10;
-    color: $R10;
+    color: $R00;
 }
 
 .emptyred:hover, .emptyred.hover
 {
     background-color: $R20;
     border-color: $R20;
-    color: #fff;
+    color: $D80;
 }
 
 .emptyred:active, .emptyred.active
 {
-    background-color: $R00;
-    border-color: $R00;
-    color: #fff;
+    background-color: $R10;
+    border-color: $R10;
+    color: $D80;
 }
 
 .transparent
