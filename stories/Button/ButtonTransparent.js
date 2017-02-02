@@ -16,6 +16,7 @@ class ButtonTransparent extends Component {
 
   state = {
     disabled: false,
+    height: 'small',
     theme: 'transparent',
     text: 'Click On Me'
   };
@@ -24,7 +25,6 @@ class ButtonTransparent extends Component {
     return (
       <from className={styles.form}>
         <div className={styles.input}>
-          <h1>TODO</h1>
 
           <div className={styles.option}>
             <Label>Disabled</Label>

@@ -24,7 +24,6 @@ class ButtonPremium extends Component {
     return (
       <from className={styles.form}>
         <div className={styles.input}>
-          <h1>TODO</h1>
 
           <div className={styles.option}>
             <Label>Type</Label>
