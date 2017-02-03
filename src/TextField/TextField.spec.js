@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
-import TextField from '../TextField';
+import TextField from './TextField';
 import Input from '../Input';
 import {textFieldTestkitFactory} from '../../testkit';
 import {textFieldTestkitFactory as enzymeTextFieldTestkitFactory} from '../../testkit/enzyme';
