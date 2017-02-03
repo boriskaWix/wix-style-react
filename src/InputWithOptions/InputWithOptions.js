@@ -106,7 +106,7 @@ class InputWithOptions extends WixComponent {
     }
   }
 
-  _onSelect(option) {
+  _onSelect(option, isSelectedOption) {
     this.showOptions();
     const {onSelect} = this.props;
 
@@ -114,7 +114,9 @@ class InputWithOptions extends WixComponent {
       this.hideOptions();
     }
 
-    if (onSelect) {
+    if (isSelectedOption) {
+      this.setState({showOptions: false});
+    } else if (onSelect) {
       onSelect(option);
     }
   }
@@ -167,7 +169,8 @@ InputWithOptions.defaultProps = {
   onSelect: () => {},
   options: [],
   closeOnSelect: true,
-  inputElement: <Input/>
+  inputElement: <Input/>,
+  valueParser: option => option.value
 };
 
 InputWithOptions.propTypes = {
@@ -175,7 +178,8 @@ InputWithOptions.propTypes = {
   ...DropdownLayout.propTypes,
   inputElement: React.PropTypes.element,
   closeOnSelect: React.PropTypes.bool,
-  onManuallyInput: React.PropTypes.func
+  onManuallyInput: React.PropTypes.func,
+  valueParser: React.PropTypes.func
 };
 
 InputWithOptions.displayName = 'InputWithOptions';

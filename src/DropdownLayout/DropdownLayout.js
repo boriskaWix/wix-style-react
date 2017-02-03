@@ -46,14 +46,8 @@ class DropdownLayout extends WixComponent {
 
   _onSelect(index) {
     const {options, onSelect, selectedId} = this.props;
-    if (index >= 0 && index < options.length) {
-      const newSelectedId = options[index].id;
-      if (newSelectedId !== selectedId && onSelect) {
-        onSelect(options[index]);
-        return true;
-      }
-    }
-    return false;
+    options[index] && onSelect && onSelect(options[index], options[index].id === selectedId);
+    return !!onSelect && options[index];
   }
 
   _onMouseEnter(index) {
@@ -148,10 +142,10 @@ class DropdownLayout extends WixComponent {
       [styles.shown]: visible,
       [styles.up]: dropDirectionUp,
       [styles.down]: !dropDirectionUp
-    }, styles[this.props.theme]);
+    });
 
     return (
-      <div tabIndex={tabIndex} className={styles.wrapper} onKeyDown={this._onKeyDown}>
+      <div tabIndex={tabIndex} className={classNames(styles.wrapper, styles[`theme-${this.props.theme}`])} onKeyDown={this._onKeyDown}>
         <div className={contentContainerClassName}>
           {this.renderNode(fixedHeader)}
           <div className={styles.options} ref={options => this.options = options} data-hook="dropdown-layout-options">
