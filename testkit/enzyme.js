@@ -57,4 +57,7 @@ export const autoCompleteCompositeTestkitFactory = enzymeTestkitFactoryCreator(a
 import loaderDriverFactory from '../src/Loader/Loader.driver';
 export const loaderTestkitFactory = enzymeTestkitFactoryCreator(loaderDriverFactory);
 
+import radioGroupDriverFactory from '../src/RadioGroup/RadioGroup.driver';
+export const radioGroupTestkitFactory = enzymeTestkitFactoryCreator(radioGroupDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';

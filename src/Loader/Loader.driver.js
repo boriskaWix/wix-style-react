@@ -5,6 +5,7 @@ import Loader from '../Loader';
 const loaderDriverFactory = ({component, wrapper}) => {
   const isClassExists = (component, className) => !!component && component.className.indexOf(className) !== -1;
   const text = component.childNodes[1];
+
   return {
     exists: () => !!component,
     isSmall: () => isClassExists(component, 'small'),

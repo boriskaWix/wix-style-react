@@ -3,8 +3,8 @@ import Loader from './Loader';
 import loaderDriverFactory from './Loader.driver';
 import {createDriverFactory} from '../test-common';
 import {loaderTestkitFactory} from '../../testkit';
-import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 import {loaderTestkitFactory as enzymeLoaderTestkitFactory} from '../../testkit/enzyme';
+import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 
 describe('Loader', () => {
   const createDriver = createDriverFactory(loaderDriverFactory);

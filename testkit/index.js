@@ -57,6 +57,8 @@ export const autoCompleteCompositeTestkitFactory = testkitFactoryCreator(autoCom
 import loaderDriverFactory from '../src/Loader/Loader.driver';
 export const loaderTestkitFactory = testkitFactoryCreator(loaderDriverFactory);
 
+import radioGroupDriverFactory from '../src/RadioGroup/RadioGroup.driver';
+export const radioGroupTestkitFactory = testkitFactoryCreator(radioGroupDriverFactory);
 
-export {radioGroupDriverFactory} from '../src/RadioGroup/RadioGroup.driver';
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
