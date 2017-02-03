@@ -15,7 +15,7 @@ class ButtonIcon extends Component {
 
   state = {
     disabled: false,
-    theme: 'emptybluesecondary',
+    theme: 'close-standard',
     iconOnly: true,
     height: 'medium'
   };
@@ -24,7 +24,6 @@ class ButtonIcon extends Component {
     return (
       <from className={styles.form}>
         <div className={styles.input}>
-          <h1>TODO</h1>
 
           <div className={styles.option}>
             <Label>Type</Label>
@@ -34,9 +33,9 @@ class ButtonIcon extends Component {
                 value={this.state.theme}
                 onChange={theme => this.setState({theme})}
               >
-                <RadioGroup.Radio value="fullblue">Standard</RadioGroup.Radio>
-                <RadioGroup.Radio value="transparentwhite">Dark</RadioGroup.Radio>
-                <RadioGroup.Radio value="emptybluesecondary-b">Transparent</RadioGroup.Radio>
+                <RadioGroup.Radio value="close-standard">Standard</RadioGroup.Radio>
+                <RadioGroup.Radio value="close-dark">Dark</RadioGroup.Radio>
+                <RadioGroup.Radio value="close-transparent">Transparent</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>

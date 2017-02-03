@@ -12,6 +12,13 @@
         padding: 0px 24px;
     }
 
+    &.close-standard, &.close-dark, &.close-transparent {
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        padding: 0;
+    }
+
     box-sizing:border-box;
     -webkit-font-smoothing: antialiased;
     text-align: center;
@@ -259,20 +266,20 @@
 
 .transparent
 {
-    background-color: rgba(22, 45, 60, 0.12);
+    background-color: rgba($D10, 0.12);
     color: $D80;
     border: 0;
 }
 
 .transparent:hover, .transparent.hover
 {
-    background-color: rgba(22, 45, 60, 0.18);
+    background-color: rgba($D10, 0.18);
     color: $D80;
 }
 
 .transparent:active, .transparent.active
 {
-    background-color: rgba(22, 45, 60, 0.12);
+    background-color: rgba($D10, 0.12);
     color: $D80;
 }
 
@@ -316,6 +323,63 @@
 }
 /* </freeze */
 
+
+.close-standard, .close-dark {
+    background-color: transparent;
+    border-color: transparent;
+    color: $B10;
+}
+
+.close-dark {
+    color: $B00;
+}
+
+.close-transparent {
+    background-color: rgba($D10, 0.12);
+    border: 0;
+    color: $D80;
+}
+
+.button.close-standard.disabled,
+.button.close-dark.disabled {
+    pointer-events: none;
+    background-color: transparent;
+    border-color: transparent;
+    color: $GR40;
+}
+
+.button.close-transparent.disabled {
+    pointer-events: none;
+    background-color: $GR40;
+    color: $D80;
+}
+
+.close-standard:hover, .close-standard.hover,
+.close-dark:hover, .close-dark.hover {
+    background-color: transparent;
+    border-color: transparent;
+    color: $B20;
+}
+
+.close-transparent:hover, .close-transparent.hover {
+    background-color: rgba($D10, 0.18);
+    color: $D80;
+}
+
+.close-transparent:active, .close-transparent.active {
+    background-color: rgba($D10, 0.12);
+    color: $D80;
+}
+
+.close-standard:active, .close-standard.active,
+.close-dark:active, .close-dark.active {
+    background-color: transparent;
+    border-color: transparent;
+    color: $B10;
+}
+
+
+
 .heightsmall
 {
     $height: 30px;
@@ -338,5 +402,12 @@
 
     &.transparent {
         padding: 0px 30px;
+    }
+
+    &.close-standard, &.close-dark, &.close-transparent {
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+        padding: 0;
     }
 }

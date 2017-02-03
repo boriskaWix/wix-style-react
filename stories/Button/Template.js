@@ -23,19 +23,16 @@ export default class Form extends Component {
   }
 
   getComponent() {
-    let iconSize = '12px';
-    if (this.props.height === 'small') {
-      iconSize = '10px';
-    } else if (this.props.height === 'large') {
-      iconSize = '14px';
+    let iconSize = '6px';
+    if (this.props.height === 'large') {
+      iconSize = '8px';
     }
 
     return (
       <Button
         disabled={this.props.disabled}
         height={this.props.height}
-        theme={this.props.theme}
-        iconOnly={!!this.props.iconOnly}>
+        theme={this.props.theme}>
         {this.props.iconOnly ? <Close size={iconSize}/> : this.props.text}
       </Button>
     );
