@@ -54,4 +54,7 @@ export const textFieldTestkitFactory = enzymeTestkitFactoryCreator(textFieldDriv
 import autoCompleteCompositeDriverFactory from '../src/AutoCompleteComposite/AutoCompleteComposite.driver';
 export const autoCompleteCompositeTestkitFactory = enzymeTestkitFactoryCreator(autoCompleteCompositeDriverFactory);
 
+import loaderDriverFactory from '../src/Loader/Loader.driver';
+export const loaderTestkitFactory = enzymeTestkitFactoryCreator(loaderDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';

@@ -54,6 +54,9 @@ export const textFieldTestkitFactory = testkitFactoryCreator(textFieldDriverFact
 import autoCompleteCompositeDriverFactory from '../src/AutoCompleteComposite/AutoCompleteComposite.driver';
 export const autoCompleteCompositeTestkitFactory = testkitFactoryCreator(autoCompleteCompositeDriverFactory);
 
+import loaderDriverFactory from '../src/Loader/Loader.driver';
+export const loaderTestkitFactory = testkitFactoryCreator(loaderDriverFactory);
+
 
 export {radioGroupDriverFactory} from '../src/RadioGroup/RadioGroup.driver';
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
