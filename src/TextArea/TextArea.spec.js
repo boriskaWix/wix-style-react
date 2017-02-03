@@ -1,22 +1,25 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
-import {textAreaTestkitFactory, componentFactory, textAreaDriverFactory} from './TextArea.driver';
-import InputArea from '../InputArea';
-import _ from 'lodash/fp';
-import Label from '../Label';
 import TextArea from '../TextArea';
+import InputArea from '../InputArea';
+import Label from '../Label';
+import textAreaDriverFactory from './TextArea.driver';
+import {createDriverFactory} from '../test-common';
+import {textAreaTestkitFactory} from '../../testkit';
+import {textAreaTestkitFactory as enzymeTextAreaTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
+
 
 describe('TextArea', () => {
-
-  const createDriver = _.compose(textAreaDriverFactory, componentFactory);
+  const createDriver = createDriverFactory(textAreaDriverFactory);
 
   it('should remove label wrapping when label not given', () => {
-    const driver = createDriver({appearance: 'T1', children: <div><InputArea/></div>});
+    const driver = createDriver(<TextArea appearance="T1"><InputArea/></TextArea>);
     expect(driver.getNumberOfChildren()).toBe(1);
   });
 
   it('should render children', () => {
-    const driver = createDriver({appearance: 'T1', children: (<div><Label appearance="T1"/><InputArea/></div>)});
+    const driver = createDriver(<TextArea appearance="T1"><Label appearance="T1"/><InputArea/></TextArea>);
 
     expect(driver.getLabel().tagName.toLowerCase()).toBe('label');
     expect(driver.getInputArea().tagName.toLowerCase()).toBe('textarea');
@@ -24,7 +27,7 @@ describe('TextArea', () => {
 });
 
 describe('testkit', () => {
-  it('should create new driver', () => {
+  it('should exist', () => {
     const div = document.createElement('div');
     const dataHook = 'compHook';
 
@@ -34,7 +37,16 @@ describe('testkit', () => {
       </TextArea>
     </div>));
 
-    const driver = textAreaTestkitFactory({wrapper, dataHook});
-    expect(driver.getAttr('data-hook')).toBe(dataHook);
+    const textAreaTestkit = textAreaTestkitFactory({wrapper, dataHook});
+    expect(textAreaTestkit.exists()).toBeTruthy();
+  });
+
+  describe('enzyme testkit', () => {
+    it('should exist', () => {
+      const dataHook = 'myDataHook';
+      const wrapper = mount(<TextArea dataHook={dataHook} appearance="T1"><InputArea/></TextArea>);
+      const textAreaTestkit = enzymeTextAreaTestkitFactory({wrapper, dataHook});
+      expect(textAreaTestkit.exists()).toBeTruthy();
+    });
   });
 });

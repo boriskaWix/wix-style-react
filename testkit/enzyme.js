@@ -45,4 +45,7 @@ export const buttonTestkitFactory = enzymeTestkitFactoryCreator(buttonDriverFact
 import dataTableDriverFactory from '../src/DataTable/DataTable.driver';
 export const dataTableTestkitFactory = enzymeTestkitFactoryCreator(dataTableDriverFactory);
 
+import textAreaDriverFactory from '../src/TextArea/TextArea.driver';
+export const textAreaTestkitFactory = enzymeTestkitFactoryCreator(textAreaDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';

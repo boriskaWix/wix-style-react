@@ -45,5 +45,9 @@ export const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);
 import dataTableDriverFactory from '../src/DataTable/DataTable.driver';
 export const dataTableTestkitFactory = testkitFactoryCreator(dataTableDriverFactory);
 
+import textAreaDriverFactory from '../src/TextArea/TextArea.driver';
+export const textAreaTestkitFactory = testkitFactoryCreator(textAreaDriverFactory);
+
+
 export {radioGroupDriverFactory} from '../src/RadioGroup/RadioGroup.driver';
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
