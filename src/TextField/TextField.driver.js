@@ -1,17 +1,13 @@
-import React from 'react';
-import TextField from '../TextField';
-import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import inputAreaWithLabelCompositeDriverFactory from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite.driver';
 
-const textFieldDriverFactory = ({component, wrapper}) => ({
-  exists: () => !!component,
-  getLabel: () => $('label', component).get(0),
-  getInput: () => $('input', component).get(0),
-  getAttr: attrName => component.getAttribute(attrName),
-  getNumberOfChildren: () => component.childElementCount,
-  setProps: props => {
-    ReactDOM.render(<div ref={r => component = r}><TextField {...props}/></div>, wrapper);
-  }
-});
+const textFieldDriverFactory = ({component, wrapper}) => {
+  const input = component.childNodes[1];
+
+  return {
+    ...inputAreaWithLabelCompositeDriverFactory({component, wrapper}),
+    getInput: () => input,
+    hasInput: () => input.childNodes[1].tagName.toLowerCase() === 'input'
+  };
+};
 
 export default textFieldDriverFactory;

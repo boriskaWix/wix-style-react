@@ -1,17 +1,12 @@
-import React from 'react';
-import TextArea from './TextArea';
-import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import inputAreaWithLabelCompositeDriverFactory from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite.driver';
 
-const textAreaDriverFactory = ({component, wrapper}) => ({
-  exists: () => !!component,
-  getLabel: () => $('label', component).get(0),
-  getInputArea: () => $('textarea', component).get(0),
-  getAttr: attrName => component.getAttribute(attrName),
-  getNumberOfChildren: () => component.childElementCount,
-  setProps: props => {
-    ReactDOM.render(<div ref={r => component = r}><TextArea {...props}/></div>, wrapper);
-  }
-});
+const textAreaDriverFactory = ({component, wrapper}) => {
+  const inputArea = component.childNodes[1];
+  return {
+    ...inputAreaWithLabelCompositeDriverFactory({component, wrapper}),
+    getInputArea: () => inputArea,
+    hasInputArea: () => inputArea.childNodes[0].tagName.toLowerCase() === 'textarea'
+  };
+};
 
 export default textAreaDriverFactory;

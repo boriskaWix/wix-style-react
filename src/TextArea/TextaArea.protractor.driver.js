@@ -1,9 +1,8 @@
-import _ from 'lodash/fp';
+import inputAreaWithLabelCompositeDriverFactory from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite.protractor.driver';
 
 const textAreaDriverFactory = component => ({
-  getLabel: () => component.find('label'),
-  getInputArea: () => component.find('textarea'),
-  element: () => component
+  ...inputAreaWithLabelCompositeDriverFactory(component),
+  getInputArea: () => component.find('textarea')
 });
 
 export default textAreaDriverFactory;

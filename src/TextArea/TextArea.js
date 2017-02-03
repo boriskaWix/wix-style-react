@@ -1,29 +1,17 @@
-import React, {Children} from 'react';
-import {first, last} from 'lodash/fp';
-import WixComponent from '../WixComponent';
+import React from 'react';
 import {children, optional, once} from '../Composite';
 import Label from '../Label';
-import Input from '../InputArea';
-import styles from './TextArea.scss';
+import InputArea from '../InputArea';
+import InputAreaWithLabelComposite from '../Composite/InputAreaWithLabelComposite/InputAreaWithLabelComposite';
 
-class TextArea extends WixComponent {
-  render() {
-    const children = Children.toArray(this.props.children);
-    return (
-      <div>
-        { children.length === 2 ?
-          <div className={styles.textAreaLabel}>
-            {first(children)}
-          </div> : null
-        }
-        { last(children) }
-      </div>
-    );
-  }
-}
+const TextArea = ({...props, children}) => (
+  <InputAreaWithLabelComposite {...props}>
+    {children}
+  </InputAreaWithLabelComposite>
+);
 
 TextArea.propTypes = {
-  children: children(optional(Label), once(Input))
+  children: children(optional(Label), once(InputArea))
 };
 
 TextArea.displayName = 'TextArea';
