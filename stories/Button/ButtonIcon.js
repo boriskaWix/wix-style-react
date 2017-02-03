@@ -33,6 +33,10 @@ class ButtonIcon extends Component {
         <div className={styles.input}>
 
           <div className={styles.option}>
+            <Label>Any icon from Lib</Label>
+          </div>
+
+          <div className={styles.option}>
             <Label>Type</Label>
             <div className={styles.flex}>
               <RadioGroup
