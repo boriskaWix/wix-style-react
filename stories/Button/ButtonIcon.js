@@ -15,23 +15,22 @@ class ButtonIcon extends Component {
 
   state = {
     disabled: false,
-    theme: 'emptybluesecondary',
+    theme: 'icon-standard',
     iconOnly: true,
     height: 'medium'
   };
 
   render() {
     let backgroundStyle = 'output-lightblue';
-    if (['fullblue', 'transparentwhite'].indexOf(this.state.theme) >= 0) {
+    if (['icon-standard', 'icon-standardsecondary'].indexOf(this.state.theme) >= 0) {
       backgroundStyle = 'output-white';
-    } else if (['emptybluesecondary-a', 'emptybluesecondary-b'].indexOf(this.state.theme) >= 0) {
+    } else if (['icon-white', 'icon-whitesecondary'].indexOf(this.state.theme) >= 0) {
       backgroundStyle = 'output-darkblue';
     }
 
     return (
       <from className={styles.form}>
         <div className={styles.input}>
-          <h1>TODO</h1>
 
           <div className={styles.option}>
             <Label>Type</Label>
@@ -41,11 +40,11 @@ class ButtonIcon extends Component {
                 value={this.state.theme}
                 onChange={theme => this.setState({theme})}
               >
-                <RadioGroup.Radio value="emptypurple">Grey Background</RadioGroup.Radio>
-                <RadioGroup.Radio value="fullblue">Standard Primary</RadioGroup.Radio>
-                <RadioGroup.Radio value="transparentwhite">Standard Secondary</RadioGroup.Radio>
-                <RadioGroup.Radio value="emptybluesecondary-a">White Primary</RadioGroup.Radio>
-                <RadioGroup.Radio value="emptybluesecondary-b">White Secondary</RadioGroup.Radio>
+                <RadioGroup.Radio value="icon-greybackground">Grey Background</RadioGroup.Radio>
+                <RadioGroup.Radio value="icon-standard">Standard Primary</RadioGroup.Radio>
+                <RadioGroup.Radio value="icon-standardsecondary">Standard Secondary</RadioGroup.Radio>
+                <RadioGroup.Radio value="icon-white">White Primary</RadioGroup.Radio>
+                <RadioGroup.Radio value="icon-whitesecondary">White Secondary</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>

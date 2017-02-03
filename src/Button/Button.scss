@@ -19,6 +19,12 @@
         padding: 0;
     }
 
+    &.icon-greybackground, &.icon-standard, &.icon-standardsecondary, &.icon-white, &.icon-whitesecondary {
+        width: $height;
+        border-radius: 50%;
+        padding: 0;
+    }
+
     box-sizing:border-box;
     -webkit-font-smoothing: antialiased;
     text-align: center;
@@ -26,7 +32,7 @@
     cursor: pointer;
     outline: none;
 
-    transition: background-color 100ms linear;
+    transition: background-color 100ms linear, border-color 100ms linear, color 100ms linear;
 }
 
 .button>.inner {
@@ -65,14 +71,17 @@
     color: $GR40;
 }
 
-/* <freeze */
-.fullblue {
+.fullblue,
+.icon-standard {
     background-color: $B10;
     border-color: $B10;
     color: $D80;
 }
 
+.icon-greybackground:hover, .icon-greybackground.hover,
+.icon-standard:hover, .icon-standard.hover,
 .fullblue:hover, .fullblue.hover,
+.icon-standardsecondary:hover, .icon-standardsecondary.hover,
 .transparentblue:hover, .transparentblue.hover,
 .whiteblue:hover, .whiteblue.hover {
     background-color: $B20;
@@ -80,14 +89,19 @@
     color: $D80;
 }
 
+.icon-whitesecondary:hover, .icon-whitesecondary.hover,
 .whitebluesecondary:hover, .whitebluesecondary.hover,
-.whiteblueprimary:hover, .whiteblueprimary.hover{
+.icon-white:hover, .icon-white.hover,
+.whiteblueprimary:hover, .whiteblueprimary.hover {
     background-color: $B50;
     border-color: $B50;
     color: $B10;
 }
 
+.icon-greybackground:active, .icon-greybackground.active,
+.icon-standard:active, .icon-standard.active,
 .fullblue:active, .fullblue.active,
+.icon-standardsecondary:active, .icon-standardsecondary.active,
 .transparentblue:active, .transparentblue.active,
 .whiteblue:active, .whiteblue.active {
     background-color: $B10;
@@ -95,21 +109,23 @@
     color: $D80;
 }
 
+.icon-white:active, .icon-white.active,
 .whiteblueprimary:active, .whiteblueprimary.active,
+.icon-whitesecondary:active, .icon-whitesecondary.active,
 .whitebluesecondary:active, .whitebluesecondary.active {
     background-color: $B40;
     border-color: $B40;
     color: $B10;
 }
 
-.button.fullblue.disabled
-{
+.button.icon-greybackground.disabled,
+.button.icon-standard.disabled,
+.button.fullblue.disabled {
     pointer-events: none;
     border-color: $GR40;
     background-color: $GR40;
     color: $D80;
 }
-/* </freeze */
 
 .emptybluesecondary
 {
@@ -283,15 +299,14 @@
     color: $D80;
 }
 
-
-
-/* <freeze */
-.transparentblue {
+.transparentblue,
+.icon-standardsecondary {
     background-color: transparent;
     border-color: $B10;
     color: $B10;
 }
 
+.button.icon-standardsecondary.disabled,
 .button.transparentblue.disabled,
 .button.whiteblue.disabled {
     pointer-events: none;
@@ -300,6 +315,7 @@
     color: $GR40;
 }
 
+.button.icon-white.disabled,
 .button.whiteblueprimary.disabled {
     pointer-events: none;
     background-color: $GR40;
@@ -307,6 +323,7 @@
     color: $D80;
 }
 
+.button.icon-whitesecondary.disabled,
 .button.whitebluesecondary.disabled {
     pointer-events: none;
     background-color: transparent;
@@ -314,15 +331,21 @@
     color: $GR40;
 }
 
+.icon-greybackground,
 .whiteblueprimary,
-.whitebluesecondary,
+.icon-white,
 .whiteblue {
     background-color: $D80;
     border-color: $D80;
     color: $B10;
 }
-/* </freeze */
 
+.whitebluesecondary,
+.icon-whitesecondary {
+    background-color: transparent;
+    border-color: $D80;
+    color: $D80;
+}
 
 .close-standard, .close-dark {
     background-color: transparent;
@@ -378,8 +401,6 @@
     color: $B10;
 }
 
-
-
 .heightsmall
 {
     $height: 30px;
@@ -390,6 +411,11 @@
 
     &.transparent {
         padding: 0px 18px;
+    }
+
+    &.icon-greybackground, &.icon-standard, &.icon-standardsecondary, &.icon-white, &.icon-whitesecondary {
+        width: $height;
+        padding: 0;
     }
 }
 

@@ -27,6 +27,9 @@ export default class Form extends Component {
     if (this.props.height === 'large') {
       iconSize = '8px';
     }
+    if (['close-standard', 'close-dark', 'close-transparent'].indexOf(this.props.theme) < 0) {
+      iconSize = '12px';
+    }
 
     return (
       <Button
