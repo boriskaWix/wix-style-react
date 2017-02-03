@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import uniqueId from 'lodash.uniqueid';
-import RadioButton from './RadioButton';
+import RadioButton from './RadioButton/RadioButton';
 import styles from './RadioGroup.scss';
 import WixComponent from '../WixComponent';
 

@@ -60,5 +60,8 @@ export const loaderTestkitFactory = testkitFactoryCreator(loaderDriverFactory);
 import radioGroupDriverFactory from '../src/RadioGroup/RadioGroup.driver';
 export const radioGroupTestkitFactory = testkitFactoryCreator(radioGroupDriverFactory);
 
+import radioButtonDriverFactory from '../src/RadioGroup/RadioButton/RadioButton.driver';
+export const radioButtonTestkitFactory = testkitFactoryCreator(radioButtonDriverFactory);
+
 
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
