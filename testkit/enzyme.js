@@ -48,4 +48,7 @@ export const dataTableTestkitFactory = enzymeTestkitFactoryCreator(dataTableDriv
 import textAreaDriverFactory from '../src/TextArea/TextArea.driver';
 export const textAreaTestkitFactory = enzymeTestkitFactoryCreator(textAreaDriverFactory);
 
+import textFieldDriverFactory from '../src/TextField/TextField.driver';
+export const textFieldTestkitFactory = enzymeTestkitFactoryCreator(textFieldDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
