@@ -22,7 +22,7 @@ class ButtonIcon extends Component {
 
   render() {
     return (
-      <from className={styles.form}>
+      <form className={styles.form}>
         <div className={styles.input}>
 
           <div className={styles.option}>
@@ -72,7 +72,7 @@ class ButtonIcon extends Component {
             <Template {...this.state} onChange={this.props.onChange}/>
           </div>
         </div>
-      </from>
+      </form>
     );
   }
 }
