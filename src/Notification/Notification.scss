@@ -1,0 +1,34 @@
+.notification-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*Theme*/
+
+.standard-theme {
+
+}
+.error-theme {
+
+}
+.success-theme {
+
+}
+.warning-theme {
+
+}
+
+/*Size*/
+
+.standard-size {
+  height: 42px;
+}
+
+.big-size {
+  height: 54px;
+}

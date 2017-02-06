@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import Notification from './Notification';
 
 const notificationDriverFactory = ({component, wrapper}) => {
-  const classExists = className => component.classList.contains(className);
+  const classExists = className => wrapper.querySelector('[data-hook="notification-content"]').classList.contains(className);
 
   return {
     exists: () => !!component,

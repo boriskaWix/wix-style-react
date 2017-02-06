@@ -29,18 +29,19 @@ class Notification extends React.Component {
     } = this.props;
 
     const className = classNames({
+      [css.notificationWrapper]: true,
       [css[`${theme}Theme`]]: true,
       [css[`${size}Size`]]: true,
     });
 
     const childrenComponents = getChildren(children);
 
+    /*animation wrapper should replace the first div*/
     return (
-      <div className={className}>
+      <div>
         {
-          /*Here the animation wrapper will be*/
           show ?
-            <div data-hook="notification-content">
+            <div data-hook="notification-content" className={className}>
               {
                 childrenComponents.label ?
                   <div data-hook="notification-label">
@@ -73,13 +74,14 @@ class Notification extends React.Component {
 Notification.propTypes = {
   show: PropTypes.bool,
   theme: PropTypes.oneOf(['standard', 'error', 'success', 'warning']),
+  size: PropTypes.oneOf(['standard', 'big']),
   children: PropTypes.any //TODO - add specific children?
 };
 
 Notification.defaultProps = {
   show: false,
   theme: 'standard',
-  size: 'standard'
+  size: 'standard' //TODO - I don't like it but we need to set a size for the container to maintain animation
 };
 
 export default Notification;
