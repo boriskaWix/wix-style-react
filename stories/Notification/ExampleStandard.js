@@ -2,9 +2,9 @@ import React, {Component, PropTypes} from 'react';
 
 import styles from './ExampleStandard.scss';
 import Notification from './Notification';
-// import Input from '../../src/Input';
-// import Label from '../../src/Label';
-// import ToggleSwitch from '../../src/ToggleSwitch';
+import Label from '../../src/Label';
+import ToggleSwitch from '../../src/ToggleSwitch';
+import RadioGroup from '../../src/RadioGroup';
 //
 
 class ExampleStandard extends Component {
@@ -15,9 +15,10 @@ class ExampleStandard extends Component {
 
   state = {
     notification: {
-      show: false,
+      show: true,
       position: 'relative',
-      size: 'big'
+      size: 'big',
+      theme: 'standard'
     },
     label: {
       appearance: 'T1.2'
@@ -40,10 +41,51 @@ class ExampleStandard extends Component {
 
   render() {
     return (
-      <div className={styles.output}>
-        <Notification {...this.state} onChange={this.props.onChange}/>
-        <a onClick = {() => this.setComponentState('notification', {show: !this.state.notification.show})}>Click To Show</a>
-      </div>
+      <form className={styles.form}>
+        <div className={styles.output}>
+          <Notification {...this.state} onChange={this.props.onChange}/>
+        </div>
+        <div className={styles.input}>
+          <div className={styles.option}>
+            <Label>Show Notification</Label>
+            <div className={styles.flex}>
+              <ToggleSwitch
+                size="small"
+                checked={this.state.notification.show}
+                onChange={() => this.setComponentState('notification', {show: !this.state.notification.show})}
+              />
+            </div>
+          </div>
+          <div className={styles.option}>
+            <Label>Size</Label>
+            <div className={styles.flex}>
+              <RadioGroup
+                display="horizontal"
+                value={this.state.notification.position}
+                onChange={position => this.setComponentState('notification', {position})}
+              >
+                <RadioGroup.Radio value="relative">Relative</RadioGroup.Radio>
+                <RadioGroup.Radio value="fixed">Fixed</RadioGroup.Radio>
+              </RadioGroup>
+            </div>
+          </div>
+          <div className={styles.option}>
+            <Label>Theme</Label>
+            <div className={styles.flex}>
+              <RadioGroup
+                display="horizontal"
+                value={this.state.notification.theme}
+                onChange={theme => this.setComponentState('notification', {theme})}
+              >
+                <RadioGroup.Radio value="standard">Standard</RadioGroup.Radio>
+                <RadioGroup.Radio value="error">Error</RadioGroup.Radio>
+                <RadioGroup.Radio value="success">Success</RadioGroup.Radio>
+                <RadioGroup.Radio value="warning">Warning</RadioGroup.Radio>
+              </RadioGroup>
+            </div>
+          </div>
+        </div>
+      </form>
     );
     // return (
     //   <from className={styles.form}>

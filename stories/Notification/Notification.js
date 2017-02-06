@@ -10,7 +10,7 @@ export default class Form extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    show: PropTypes.bool,
+    notification: PropTypes.object,
     label: PropTypes.object,
     withActionButton: PropTypes.bool,
     actionButton: PropTypes.object
