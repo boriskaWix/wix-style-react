@@ -7,10 +7,7 @@ const notificationDriverFactory = ({component, wrapper}) => {
   const classExists = className => wrapper.querySelector('[data-hook="notification-wrapper"]').classList.contains(className);
 
   return {
-    exists: () => {
-      console.log('*** [Notification.driver][11] ***', wrapper.innerHTML);
-      return !!component;
-    },
+    exists: () => !!component,
     visible: () => !!wrapper.querySelector('[data-hook="notification-wrapper"]'),
     isStandardNotification: () => classExists('standardTheme'),
     isErrorNotification: () => classExists('errorTheme'),
