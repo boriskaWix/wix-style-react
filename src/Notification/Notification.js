@@ -1,6 +1,12 @@
 import React, {PropTypes, Children} from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import classNames from 'classnames';
 import css from './Notification.scss';
+
+function FirstChild(props) {
+  const childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
+}
 
 const getChildren = (children) => {
   const childrenArray = Children.toArray(children);
@@ -28,7 +34,7 @@ class Notification extends React.Component {
       children
     } = this.props;
 
-    const className = classNames({
+    const notificationClassName = classNames({
       [css.notificationWrapper]: true,
       [css[`${theme}Theme`]]: true,
       [css[`${size}Size`]]: true,
@@ -38,17 +44,27 @@ class Notification extends React.Component {
 
     /*animation wrapper should replace the first div*/
     return (
-      <div>
+      <ReactCSSTransitionGroup
+        component={FirstChild}
+        transitionName={{
+          enter: css.notificationAnimationEnter,
+          enterActive: css.notificationAnimationEnterActive,
+          leave: css.notificationAnimationLeave,
+          leaveActive: css.notificationAnimationLeaveActive,
+        }}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={350}
+      >
         {
           show ?
-            <div data-hook="notification-wrapper" className={className}>
+            <div data-hook="notification-wrapper" className={notificationClassName}>
               <div className={css.notificationContentWrapper}>
-                <div data-hook="notification-label">
+                <div data-hook="notification-label" className={css.labelWrapper}>
                   {childrenComponents.label}
                 </div>
                 {
                   childrenComponents.ctaButton ?
-                    <div data-hook="notification-cta-button">
+                    <div data-hook="notification-cta-button" className={css.ctaButtonWrapper}>
                       {childrenComponents.ctaButton}
                     </div> :
                     null
@@ -60,7 +76,7 @@ class Notification extends React.Component {
             </div> :
             null
         }
-      </div>
+      </ReactCSSTransitionGroup>
     )
   }
 }
