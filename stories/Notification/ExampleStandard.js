@@ -14,8 +14,11 @@ class ExampleStandard extends Component {
   };
 
   state = {
-    show: false,
-    size: 'big',
+    notification: {
+      show: false,
+      position: 'relative',
+      size: 'big'
+    },
     label: {
       appearance: 'T1.2'
     },
@@ -39,7 +42,7 @@ class ExampleStandard extends Component {
     return (
       <div className={styles.output}>
         <Notification {...this.state} onChange={this.props.onChange}/>
-        <a onClick = {() => this.setState({show: !this.state.show})}>Click To Show</a>
+        <a onClick = {() => this.setComponentState('notification', {show: !this.state.notification.show})}>Click To Show</a>
       </div>
     );
     // return (

@@ -26,8 +26,19 @@
   }
 }
 
-/*Theme*/
+/*Position*/
 
+.relative-position {
+  position: relative;
+}
+
+.fixed-position {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/*Theme*/
 .standard-theme {
   background-color: $B20;
 }
@@ -58,10 +69,9 @@
 $easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
 $easeInOutSine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
-
 .notification-animation-enter {
-  //transition: all 0.4s cubic-bezier(0.895, 0.03, 0.685, 0.22); //TODO - this doesn't work with Quint
-  transition: all 0.4s $easeOutQuint;
+  transition: all 0.4s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  //transition: all 0.4s $easeOutQuint; //TODO - This one doesn't look good
   max-height: 0;
 
   .label-wrapper {

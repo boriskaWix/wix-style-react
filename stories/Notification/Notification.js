@@ -26,7 +26,7 @@ export default class Form extends Component {
 
   getComponent() {
     return (
-      <Notification show={this.props.show} size={this.props.size}>
+      <Notification {...this.props.notification}>
         <Label {...this.props.label}>
           Boo! I scared you with this very scary error message!
         </Label>

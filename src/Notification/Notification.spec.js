@@ -139,6 +139,23 @@ describe('Notification', () => {
       });
     });
   });
+  
+  describe('Position', () => {
+    it('should position it in default position - relative', () => {
+      const driver = createDriver(<Notification show={true}/>);
+      expect(driver.isRelativelyPositioned()).toBeTruthy();
+    });
+
+    it('should position it in given position - relative', () => {
+      const driver = createDriver(<Notification show={true} position="relative"/>);
+      expect(driver.isRelativelyPositioned()).toBeTruthy();
+    });
+
+    it('should position it in given position - fixed', () => {
+      const driver = createDriver(<Notification show={true} position="fixed"/>);
+      expect(driver.isFixedPositioned()).toBeTruthy();
+    });
+  });
 
 
   // describe('testkit', () => {

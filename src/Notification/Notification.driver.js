@@ -19,6 +19,8 @@ const notificationDriverFactory = ({component, wrapper}) => {
     hasActionButton: () => !!wrapper.querySelector('[data-hook="notification-cta-button"]'),
     getActionButtonText: () => wrapper.querySelector('[data-hook="notification-cta-button"]').textContent,
     hasCloseButton: () => !!wrapper.querySelector('[data-hook="notification-close-button"]'),
+    isRelativelyPositioned: () => classExists('relativePosition'),
+    isFixedPositioned: () => classExists('fixedPosition'),
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><Notification {...props}/></div>, wrapper);
     }
