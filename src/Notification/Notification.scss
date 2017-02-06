@@ -1,3 +1,5 @@
+@import '../common.scss';
+
 .notification-wrapper {
   position: relative;
   width: 100%;
@@ -6,12 +8,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .notification-content-wrapper {
+    flex: 1 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div:first-child {
+      margin-right: 12px;
+    }
+  }
+
+  .close-button-wrapper {
+    margin-right: 12px;
+  }
 }
 
 /*Theme*/
 
 .standard-theme {
-
+  background-color: $B20;
 }
 .error-theme {
 

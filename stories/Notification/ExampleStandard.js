@@ -15,8 +15,9 @@ class ExampleStandard extends Component {
 
   state = {
     show: false,
+    size: 'big',
     label: {
-      appearance: 'T1.4'
+      appearance: 'T1.2'
     },
     withActionButton: true,
     actionButton: {

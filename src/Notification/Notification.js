@@ -5,7 +5,7 @@ import css from './Notification.scss';
 const getChildren = (children) => {
   const childrenArray = Children.toArray(children);
 
-  if(childrenArray.length === 3) {
+  if (childrenArray.length === 3) {
     return {
       label: childrenArray[0],
       ctaButton: childrenArray[1],
@@ -41,28 +41,22 @@ class Notification extends React.Component {
       <div>
         {
           show ?
-            <div data-hook="notification-content" className={className}>
-              {
-                childrenComponents.label ?
-                  <div data-hook="notification-label">
-                    {childrenComponents.label}
-                  </div> :
-                  null
-              }
-              {
-                childrenComponents.ctaButton ?
-                  <div data-hook="notification-cta-button">
-                    {childrenComponents.ctaButton}
-                  </div> :
-                  null
-              }
-              {
-                childrenComponents.closeButton ?
-                  <div data-hook="notification-close-button">
-                    {childrenComponents.closeButton}
-                  </div> :
-                  null
-              }
+            <div data-hook="notification-wrapper" className={className}>
+              <div className={css.notificationContentWrapper}>
+                <div data-hook="notification-label">
+                  {childrenComponents.label}
+                </div>
+                {
+                  childrenComponents.ctaButton ?
+                    <div data-hook="notification-cta-button">
+                      {childrenComponents.ctaButton}
+                    </div> :
+                    null
+                }
+              </div>
+              <div data-hook="notification-close-button" className={css.closeButtonWrapper}>
+                {childrenComponents.closeButton}
+              </div>
             </div> :
             null
         }
