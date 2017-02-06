@@ -11,6 +11,12 @@ import {Close} from '../Icons';
 // import {notificationTestkitFactory as enzymeNotificationTestkitFactory} from '../../testkit/enzyme';
 // import {mount} from 'enzyme';
 
+const CloseButton = () => (
+  <Button height="medium" theme="close-transparent">
+    <Close size="6px"/>
+  </Button>
+);
+
 describe('Notification', () => {
   const createDriver = createDriverFactory(notificationDriverFactory);
 
@@ -99,7 +105,7 @@ describe('Notification', () => {
             <Button height="small" theme="transparent">
               {actionButtonText}
             </Button>
-            <div>close button</div>
+            <CloseButton/>
           </Notification>
         );
         expect(driver.getActionButtonText()).toEqual(actionButtonText);
@@ -117,9 +123,7 @@ describe('Notification', () => {
           <Notification show={true}>
             <div>label</div>
             <div>action</div>
-            <Button height="medium" theme="close-transparent">
-              <Close size="6px" />
-            </Button>
+            <CloseButton/>
           </Notification>
         );
         expect(driver.hasCloseButton()).toBeTruthy();
@@ -129,9 +133,7 @@ describe('Notification', () => {
         const driver = createDriver(
           <Notification show={true}>
             <div>label</div>
-            <Button height="medium" theme="close-transparent">
-              <Close size="6px" />
-            </Button>
+            <CloseButton/>
           </Notification>
         );
         expect(driver.hasActionButton()).toBeFalsy();
@@ -139,7 +141,7 @@ describe('Notification', () => {
       });
     });
   });
-  
+
   describe('Type', () => {
     it('should set default type to global and position relative', () => {
       const driver = createDriver(<Notification show={true}/>);
@@ -154,6 +156,46 @@ describe('Notification', () => {
     it('should set the type to relative and position fixed', () => {
       const driver = createDriver(<Notification show={true} type="local"/>);
       expect(driver.isFixedPositioned()).toBeTruthy();
+    });
+  });
+
+  describe('Closing', () => {
+    beforeEach(() => {
+      //use fake timers to ignore animations timeouts
+      jest.useFakeTimers();
+    });
+
+    afterEach(() => {
+      jest.clearAllTimers();
+    });
+
+    it('should close the notification when clicking on close button', () => {
+      const driver = createDriver(
+        <Notification show={true}>
+          <div>label</div>
+          <CloseButton/>
+        </Notification>
+      );
+
+      driver.clickOnCloseButton();
+      jest.runAllTimers();
+      expect(driver.visible()).toBeFalsy();
+    });
+
+    it('should allow reopening the notification after closed by close button', () => {
+      const driver = createDriver(
+        <Notification show={true}>
+          <div>label</div>
+          <CloseButton/>
+        </Notification>
+      );
+
+      driver.clickOnCloseButton();
+      jest.runAllTimers();
+      expect(driver.visible()).toBeFalsy();
+
+      driver.setProps({show: true});
+      expect(driver.visible()).toBeTruthy();
     });
   });
 

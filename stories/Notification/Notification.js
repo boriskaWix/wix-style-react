@@ -44,7 +44,7 @@ export default class Form extends Component {
             this.getCtaButton() :
             null
         }
-        <Button height="medium" theme="close-transparent">
+        <Button height="medium" theme="close-transparent" onClick={e => e.preventDefault()}>
           <Close size="6px"/>
         </Button>
       </Notification>

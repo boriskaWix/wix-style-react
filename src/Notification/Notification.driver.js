@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import ReactTestUtils from 'react-addons-test-utils';
 import Notification from './Notification';
+import ReactTestUtils from 'react-addons-test-utils';
 
 const notificationDriverFactory = ({component, wrapper}) => {
   const classExists = className => wrapper.querySelector('[data-hook="notification-wrapper"]').classList.contains(className);
@@ -21,6 +21,7 @@ const notificationDriverFactory = ({component, wrapper}) => {
     hasCloseButton: () => !!wrapper.querySelector('[data-hook="notification-close-button"]'),
     isRelativelyPositioned: () => classExists('relativePosition'),
     isFixedPositioned: () => classExists('fixedPosition'),
+    clickOnCloseButton: () => ReactTestUtils.Simulate.click(wrapper.querySelector('[data-hook="notification-close-button"]')),
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><Notification {...props}/></div>, wrapper);
     }

@@ -26,6 +26,25 @@ const getChildren = (children) => {
 };
 
 class Notification extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hiddenByCloseClick: false
+    }
+  }
+
+  hideOnCloseClick() {
+    this.setState({
+      hiddenByCloseClick: true
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.show) {
+      this.setState({hiddenByCloseClick: false})
+    }
+  }
+
   render() {
     const {
       show,
@@ -60,7 +79,7 @@ class Notification extends React.Component {
         transitionLeaveTimeout={350}
       >
         {
-          show ?
+          show && !this.state.hiddenByCloseClick ?
             <div data-hook="notification-wrapper" className={notificationClassName}>
               <div className={css.notificationContentWrapper}>
                 <div data-hook="notification-label" className={css.labelWrapper}>
@@ -74,7 +93,8 @@ class Notification extends React.Component {
                     null
                 }
               </div>
-              <div data-hook="notification-close-button" className={css.closeButtonWrapper}>
+              <div data-hook="notification-close-button" className={css.closeButtonWrapper}
+                   onClick={e => this.hideOnCloseClick()}>
                 {childrenComponents.closeButton}
               </div>
             </div> :
