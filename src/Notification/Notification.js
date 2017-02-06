@@ -2,9 +2,10 @@ import React, {PropTypes, Children} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import classNames from 'classnames';
 import css from './Notification.scss';
+import WixComponent from "../WixComponent";
 
 function FirstChild(props) {
-  const childrenArray = React.Children.toArray(props.children);
+  const childrenArray = Children.toArray(props.children);
   return childrenArray[0] || null;
 }
 
@@ -25,7 +26,7 @@ const getChildren = (children) => {
   }
 };
 
-class Notification extends React.Component {
+class Notification extends WixComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,40 +68,42 @@ class Notification extends React.Component {
 
     /*animation wrapper should replace the first div*/
     return (
-      <ReactCSSTransitionGroup
-        component={FirstChild}
-        transitionName={{
-          enter: css.notificationAnimationEnter,
-          enterActive: css.notificationAnimationEnterActive,
-          leave: css.notificationAnimationLeave,
-          leaveActive: css.notificationAnimationLeaveActive,
-        }}
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={350}
-      >
-        {
-          show && !this.state.hiddenByCloseClick ?
-            <div data-hook="notification-wrapper" className={notificationClassName}>
-              <div className={css.notificationContentWrapper}>
-                <div data-hook="notification-label" className={css.labelWrapper}>
-                  {childrenComponents.label}
+      <div>
+        <ReactCSSTransitionGroup
+          component={FirstChild}
+          transitionName={{
+            enter: css.notificationAnimationEnter,
+            enterActive: css.notificationAnimationEnterActive,
+            leave: css.notificationAnimationLeave,
+            leaveActive: css.notificationAnimationLeaveActive,
+          }}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={350}
+        >
+          {
+            show && !this.state.hiddenByCloseClick ?
+              <div data-hook="notification-wrapper" className={notificationClassName}>
+                <div className={css.notificationContentWrapper}>
+                  <div data-hook="notification-label" className={css.labelWrapper}>
+                    {childrenComponents.label}
+                  </div>
+                  {
+                    childrenComponents.ctaButton ?
+                      <div data-hook="notification-cta-button" className={css.ctaButtonWrapper}>
+                        {childrenComponents.ctaButton}
+                      </div> :
+                      null
+                  }
                 </div>
-                {
-                  childrenComponents.ctaButton ?
-                    <div data-hook="notification-cta-button" className={css.ctaButtonWrapper}>
-                      {childrenComponents.ctaButton}
-                    </div> :
-                    null
-                }
-              </div>
-              <div data-hook="notification-close-button" className={css.closeButtonWrapper}
-                   onClick={e => this.hideOnCloseClick()}>
-                {childrenComponents.closeButton}
-              </div>
-            </div> :
-            null
-        }
-      </ReactCSSTransitionGroup>
+                <div data-hook="notification-close-button" className={css.closeButtonWrapper}
+                     onClick={e => this.hideOnCloseClick()}>
+                  {childrenComponents.closeButton}
+                </div>
+              </div> :
+              null
+          }
+        </ReactCSSTransitionGroup>
+      </div>
     )
   }
 }

@@ -6,10 +6,10 @@ import Notification from './Notification';
 import Label from '../Label';
 import Button from '../Button';
 import {Close} from '../Icons';
-// import ReactTestUtils from 'react-addons-test-utils';
-// import {notificationTestkitFactory} from '../../testkit';
-// import {notificationTestkitFactory as enzymeNotificationTestkitFactory} from '../../testkit/enzyme';
-// import {mount} from 'enzyme';
+import ReactTestUtils from 'react-addons-test-utils';
+import {notificationTestkitFactory} from '../../testkit';
+import {notificationTestkitFactory as enzymeNotificationTestkitFactory} from '../../testkit/enzyme';
+import {mount} from 'enzyme';
 
 const CloseButton = () => (
   <Button height="medium" theme="close-transparent">
@@ -160,9 +160,25 @@ describe('Notification', () => {
   });
 
   describe('Closing', () => {
+    let driver;
+
     beforeEach(() => {
       //use fake timers to ignore animations timeouts
       jest.useFakeTimers();
+    });
+
+    beforeEach(() => {
+      driver = createDriver(
+        <Notification show={true}>
+          <div>label</div>
+          <CloseButton/>
+        </Notification>
+      );
+    });
+
+    beforeEach(() => {
+      driver.clickOnCloseButton();
+      jest.runAllTimers();
     });
 
     afterEach(() => {
@@ -170,52 +186,31 @@ describe('Notification', () => {
     });
 
     it('should close the notification when clicking on close button', () => {
-      const driver = createDriver(
-        <Notification show={true}>
-          <div>label</div>
-          <CloseButton/>
-        </Notification>
-      );
-
-      driver.clickOnCloseButton();
-      jest.runAllTimers();
       expect(driver.visible()).toBeFalsy();
     });
 
     it('should allow reopening the notification after closed by close button', () => {
-      const driver = createDriver(
-        <Notification show={true}>
-          <div>label</div>
-          <CloseButton/>
-        </Notification>
-      );
-
-      driver.clickOnCloseButton();
-      jest.runAllTimers();
-      expect(driver.visible()).toBeFalsy();
-
       driver.setProps({show: true});
       expect(driver.visible()).toBeTruthy();
     });
   });
 
+  describe('testkit', () => {
+    it('should exist', () => {
+      const div = document.createElement('div');
+      const dataHook = 'myDataHook';
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Notification dataHook={dataHook}/></div>));
+      const notificationTestkit = notificationTestkitFactory({wrapper, dataHook});
+      expect(notificationTestkit.exists()).toBeTruthy();
+    });
+  });
 
-  // describe('testkit', () => {
-  //   it('should exist', () => {
-  //     const div = document.createElement('div');
-  //     const dataHook = 'myDataHook';
-  //     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Notification dataHook={dataHook}/></div>));
-  //     const notificationTestkit = notificationTestkitFactory({wrapper, dataHook});
-  //     expect(notificationTestkit.exists()).toBeTruthy();
-  //   });
-  // });
-  //
-  // describe('enzyme testkit', () => {
-  //   it('should exist', () => {
-  //     const dataHook = 'myDataHook';
-  //     const wrapper = mount(<Notification dataHook={dataHook}/>);
-  //     const notificationTestkit = enzymeNotificationTestkitFactory({wrapper, dataHook});
-  //     expect(notificationTestkit.exists()).toBeTruthy();
-  //   });
-  // });
+  describe('enzyme testkit', () => {
+    it('should exist', () => {
+      const dataHook = 'myDataHook';
+      const wrapper = mount(<Notification dataHook={dataHook}/>);
+      const notificationTestkit = enzymeNotificationTestkitFactory({wrapper, dataHook});
+      expect(notificationTestkit.exists()).toBeTruthy();
+    });
+  });
 });
