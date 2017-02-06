@@ -15,7 +15,7 @@ class ExampleStandard extends Component {
   state = {
     notification: {
       show: true,
-      position: 'relative',
+      type: 'global',
       size: 'big',
       theme: 'standard'
     },
@@ -60,15 +60,15 @@ class ExampleStandard extends Component {
             </div>
           </div>
           <div className={styles.option}>
-            <Label>Size</Label>
+            <Label>Type</Label>
             <div className={styles.flex}>
               <RadioGroup
                 display="horizontal"
-                value={this.state.notification.position}
-                onChange={position => this.setComponentState('notification', {position})}
+                value={this.state.notification.type}
+                onChange={type => this.setComponentState('notification', {type})}
               >
-                <RadioGroup.Radio value="relative">Relative</RadioGroup.Radio>
-                <RadioGroup.Radio value="fixed">Fixed</RadioGroup.Radio>
+                <RadioGroup.Radio value="global">Global (push the content)</RadioGroup.Radio>
+                <RadioGroup.Radio value="local">Local (on top of the content)</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>

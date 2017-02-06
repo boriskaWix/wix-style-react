@@ -29,11 +29,13 @@ class Notification extends React.Component {
   render() {
     const {
       show,
+      type,
       theme,
       size,
-      position,
       children
     } = this.props;
+
+    const position = type === 'global' ? 'relative' : 'fixed';
 
     const notificationClassName = classNames({
       [css.notificationWrapper]: true,
@@ -87,7 +89,7 @@ Notification.propTypes = {
   show: PropTypes.bool,
   theme: PropTypes.oneOf(['standard', 'error', 'success', 'warning']),
   size: PropTypes.oneOf(['standard', 'big']),
-  position: PropTypes.oneOf(['relative', 'fixed']),
+  type: PropTypes.oneOf(['global', 'local']),
   children: PropTypes.any //TODO - add specific children?
 };
 
@@ -95,7 +97,7 @@ Notification.defaultProps = {
   show: false,
   theme: 'standard',
   size: 'standard', //TODO - I don't like it but we need to set a size for the container to maintain animation
-  position: 'relative'
+  type: 'global'
 };
 
 export default Notification;

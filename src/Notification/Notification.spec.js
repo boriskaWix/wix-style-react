@@ -140,19 +140,19 @@ describe('Notification', () => {
     });
   });
   
-  describe('Position', () => {
-    it('should position it in default position - relative', () => {
+  describe('Type', () => {
+    it('should set default type to global and position relative', () => {
       const driver = createDriver(<Notification show={true}/>);
       expect(driver.isRelativelyPositioned()).toBeTruthy();
     });
 
-    it('should position it in given position - relative', () => {
-      const driver = createDriver(<Notification show={true} position="relative"/>);
+    it('should set the type to global and position relative', () => {
+      const driver = createDriver(<Notification show={true} type="global"/>);
       expect(driver.isRelativelyPositioned()).toBeTruthy();
     });
 
-    it('should position it in given position - fixed', () => {
-      const driver = createDriver(<Notification show={true} position="fixed"/>);
+    it('should set the type to relative and position fixed', () => {
+      const driver = createDriver(<Notification show={true} type="local"/>);
       expect(driver.isFixedPositioned()).toBeTruthy();
     });
   });
