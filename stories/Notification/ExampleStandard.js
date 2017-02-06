@@ -5,7 +5,6 @@ import Notification from './Notification';
 import Label from '../../src/Label';
 import ToggleSwitch from '../../src/ToggleSwitch';
 import RadioGroup from '../../src/RadioGroup';
-//
 
 class ExampleStandard extends Component {
 
@@ -23,10 +22,9 @@ class ExampleStandard extends Component {
     label: {
       appearance: 'T1.2'
     },
-    withActionButton: true,
     actionButton: {
-      height: 'small',
-      theme: 'transparent'
+      show: true,
+      type: 'button'
     }
   };
 
@@ -37,6 +35,11 @@ class ExampleStandard extends Component {
         .forEach(k => !prevState[componentName][k] && delete prevState[componentName][k]);
       return prevState;
     });
+  }
+
+  setNotificationSize(actionButtonIsShown, actionButtonType) {
+    const size = actionButtonIsShown && actionButtonType === 'button' ? 'big' : 'standard';
+    this.setComponentState('notification', {size});
   }
 
   render() {
@@ -81,6 +84,35 @@ class ExampleStandard extends Component {
                 <RadioGroup.Radio value="error">Error</RadioGroup.Radio>
                 <RadioGroup.Radio value="success">Success</RadioGroup.Radio>
                 <RadioGroup.Radio value="warning">Warning</RadioGroup.Radio>
+              </RadioGroup>
+            </div>
+          </div>
+          <div className={styles.option}>
+            <Label>Action Button</Label>
+            <div className={styles.flex}>
+              <ToggleSwitch
+                size="small"
+                checked={this.state.actionButton.show}
+                onChange={show => {
+                  this.setComponentState('actionButton', {show: !this.state.actionButton.show});
+                  this.setNotificationSize(!this.state.actionButton.show, this.state.actionButton.type);
+                }}
+              />
+            </div>
+          </div>
+          <div className={styles.option}>
+            <Label>Theme</Label>
+            <div className={styles.flex}>
+              <RadioGroup
+                display="horizontal"
+                value={this.state.actionButton.type}
+                onChange={type => {
+                  this.setComponentState('actionButton', {type});
+                  this.setNotificationSize(this.state.actionButton.show, type);
+                }}
+              >
+                <RadioGroup.Radio value="button">Button</RadioGroup.Radio>
+                <RadioGroup.Radio value="textLink">TextLink</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>

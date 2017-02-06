@@ -24,6 +24,15 @@ export default class Form extends Component {
     this.props.onChange(reactElementToJSXString(this.getComponent()));
   }
 
+  getCtaButton() {
+    //TODO - should support textLink when possible
+    return this.props.actionButton.type === 'button' ?
+      <Button height="small" theme="transparent">
+        Thanks
+      </Button> :
+      <div>Thanks</div>;
+  }
+
   getComponent() {
     return (
       <Notification {...this.props.notification}>
@@ -31,10 +40,8 @@ export default class Form extends Component {
           Boo! I scared you with this very scary error message!
         </Label>
         {
-          this.props.actionButton ?
-            <Button {...this.props.actionButton}>
-              Thanks
-            </Button> :
+          this.props.actionButton.show ?
+            this.getCtaButton() :
             null
         }
         <Button height="medium" theme="close-transparent">
