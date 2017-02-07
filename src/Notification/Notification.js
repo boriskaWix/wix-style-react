@@ -13,7 +13,7 @@ function FirstChild(props) {
   return childrenArray[0] || null;
 }
 
-function getChildren(children) {
+function mapChildren(children) {
   const childrenArray = Children.toArray(children);
 
   if (childrenArray.length === 3) {
@@ -32,11 +32,12 @@ function getChildren(children) {
 
 class Notification extends WixComponent {
   closeTimeout;
+
   constructor(props) {
     super(props);
     this.state = {
-      hiddenByCloseClick: false,
-      hiddenByTimer: false
+      hideByCloseClick: false,
+      hideByTimer: false
     };
 
     this.startCloseTimer()
@@ -44,53 +45,72 @@ class Notification extends WixComponent {
 
   startCloseTimer() {
     if (this.props.type === LOCAL_NOTIFICATION) {
-      this.closeTimeout = setTimeout(() => this.setState({hiddenByTimer: true}), this.props.timeout || DEFAULT_TIMEOUT);
+      this.closeTimeout = setTimeout(() => {
+        this.hideNotificationOnTimeout();
+      }, this.props.timeout || DEFAULT_TIMEOUT);
     }
   }
 
-  hideOnCloseClick() {
+  clearCloseTimeout() {
+    if (this.closeTimeout) {
+      clearTimeout(this.closeTimeout);
+      this.closeTimeout = null;
+    }
+  }
+
+  hideNotificationOnCloseClick() {
+    this.setState({hideByCloseClick: true});
+  }
+
+  hideNotificationOnTimeout() {
+    this.setState({hideByTimer: true});
+  }
+
+  bypassCloseFlags() {
     this.setState({
-      hiddenByCloseClick: true
+      hideByCloseClick: false,
+      hideByTimer: false
     });
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.show) {
-      this.setState({
-        hiddenByCloseClick: false,
-        hiddenByTimer: false
-      });
-
-      if(this.closeTimeout) {
-        clearTimeout(this.closeTimeout);
-        this.closeTimeout = null;
-      }
+      this.bypassCloseFlags();
+      this.clearCloseTimeout();
       this.startCloseTimer();
     }
   }
 
-  render() {
+  shouldShowNotification() {
+    return this.props.show && !this.state.hideByCloseClick && !this.state.hideByTimer;
+  }
+
+  getWrapperClassNames() {
     const {
-      show,
       type,
       theme,
       size,
-      zIndex,
-      children
     } = this.props;
 
     const position = type === GLOBAL_NOTIFICATION ? 'relative' : 'fixed';
 
-    const notificationClassName = classNames({
+    return classNames({
       [css.notificationWrapper]: true,
       [css[`${theme}Theme`]]: true,
       [css[`${size}Size`]]: true,
       [css[`${position}Position`]]: true
     });
+  }
 
-    const childrenComponents = getChildren(children);
+  render() {
+    const {
+      zIndex,
+      children
+    } = this.props;
 
-    /*animation wrapper should replace the first div*/
+
+    const childrenComponents = mapChildren(children);
+
     return (
       <div>
         <ReactCSSTransitionGroup
@@ -105,22 +125,27 @@ class Notification extends WixComponent {
           transitionLeaveTimeout={350}
         >
           {
-            show && !this.state.hiddenByCloseClick && !this.state.hiddenByTimer ?
-              <div data-hook="notification-wrapper" className={notificationClassName} style={{zIndex}}>
-                <div className={css.notificationContentWrapper}>
-                  <div data-hook="notification-label" className={css.labelWrapper}>
+            this.shouldShowNotification() ?
+              <div data-hook="notification-wrapper"
+                   className={this.getWrapperClassNames()}
+                   style={{zIndex}}>
+                <div className={css.contentWrapper}>
+                  <div data-hook="notification-label"
+                       className={css.labelWrapper}>
                     {childrenComponents.label}
                   </div>
                   {
                     childrenComponents.ctaButton ?
-                      <div data-hook="notification-cta-button" className={css.ctaButtonWrapper}>
+                      <div data-hook="notification-cta-button"
+                           className={css.ctaButtonWrapper}>
                         {childrenComponents.ctaButton}
                       </div> :
                       null
                   }
                 </div>
-                <div data-hook="notification-close-button" className={css.closeButtonWrapper}
-                     onClick={e => this.hideOnCloseClick()}>
+                <div data-hook="notification-close-button"
+                     className={css.closeButtonWrapper}
+                     onClick={e => this.hideNotificationOnCloseClick()}>
                   {childrenComponents.closeButton}
                 </div>
               </div> :
@@ -139,7 +164,7 @@ Notification.propTypes = {
   type: PropTypes.oneOf([GLOBAL_NOTIFICATION, LOCAL_NOTIFICATION]),
   timeout: PropTypes.number,
   zIndex: PropTypes.number,
-  children: PropTypes.any //TODO - add specific children?
+  children: PropTypes.any
 };
 
 Notification.defaultProps = {
