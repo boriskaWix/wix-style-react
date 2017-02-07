@@ -20,7 +20,8 @@ class ExampleStandard extends Component {
       type: GLOBAL_NOTIFICATION,
       size: 'big',
       theme: 'standard',
-      timeout: DEFAULT_TIMEOUT
+      timeout: DEFAULT_TIMEOUT,
+      zIndex: 10000
     },
     label: {
       appearance: 'T1.2'
@@ -131,6 +132,15 @@ class ExampleStandard extends Component {
                 <RadioGroup.Radio value="textLink">TextLink</RadioGroup.Radio>
               </RadioGroup>
             </div>
+          </div>
+        </div>
+        <div className={styles.option}>
+          <Label>z-index (optional)</Label>
+          <div className={styles.column}>
+            <Input placeholder="optional z-index" size="small" type="number"
+                   value={this.state.notification.zIndex}
+                   onChange={e => this.setComponentState('notification', {zIndex: Number(e.target.value)})}
+            />
           </div>
         </div>
       </form>

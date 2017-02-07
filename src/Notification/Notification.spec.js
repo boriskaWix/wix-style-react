@@ -37,28 +37,28 @@ describe('Notification', () => {
     });
   });
 
-  describe('Styles', () => {
-    it('should support default style', () => {
+  describe('Themes', () => {
+    it('should support default theme', () => {
       const driver = createDriver(<Notification show={true}/>);
       expect(driver.isStandardNotification()).toBeTruthy();
     });
 
-    it('should support standard style', () => {
+    it('should support standard theme', () => {
       const driver = createDriver(<Notification show={true} theme="standard"/>);
       expect(driver.isStandardNotification()).toBeTruthy();
     });
 
-    it('should support error style', () => {
+    it('should support error theme', () => {
       const driver = createDriver(<Notification show={true} theme="error"/>);
       expect(driver.isErrorNotification()).toBeTruthy();
     });
 
-    it('should support success style', () => {
+    it('should support success theme', () => {
       const driver = createDriver(<Notification show={true} theme="success"/>);
       expect(driver.isSuccessNotification()).toBeTruthy();
     });
 
-    it('should support warning style', () => {
+    it('should support warning theme', () => {
       const driver = createDriver(<Notification show={true} theme="warning"/>);
       expect(driver.isWarningNotification()).toBeTruthy();
     });
@@ -263,6 +263,14 @@ describe('Notification', () => {
 
     afterEach(() => {
       jest.clearAllTimers();
+    });
+  });
+
+  describe('Style', () => {
+    it('should accept a z-index', () => {
+      const zIndex = 999;
+      const driver = createDriver(<Notification show={true} zIndex={zIndex}/>);
+      expect(driver.getZIndex()).toEqual(zIndex);
     });
   });
 

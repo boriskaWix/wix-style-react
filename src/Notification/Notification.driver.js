@@ -22,6 +22,7 @@ const notificationDriverFactory = ({component, wrapper}) => {
     isRelativelyPositioned: () => classExists('relativePosition'),
     isFixedPositioned: () => classExists('fixedPosition'),
     clickOnCloseButton: () => ReactTestUtils.Simulate.click(wrapper.querySelector('[data-hook="notification-close-button"]')),
+    getZIndex: () => Number(wrapper.querySelector('[data-hook="notification-wrapper"]').style['z-index']),
     setProps: props => {
       ReactDOM.render(<div ref={r => component = r}><Notification {...props}/></div>, wrapper);
     }

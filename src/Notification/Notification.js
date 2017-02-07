@@ -75,6 +75,7 @@ class Notification extends WixComponent {
       type,
       theme,
       size,
+      zIndex,
       children
     } = this.props;
 
@@ -105,7 +106,7 @@ class Notification extends WixComponent {
         >
           {
             show && !this.state.hiddenByCloseClick && !this.state.hiddenByTimer ?
-              <div data-hook="notification-wrapper" className={notificationClassName}>
+              <div data-hook="notification-wrapper" className={notificationClassName} style={{zIndex}}>
                 <div className={css.notificationContentWrapper}>
                   <div data-hook="notification-label" className={css.labelWrapper}>
                     {childrenComponents.label}
@@ -137,6 +138,7 @@ Notification.propTypes = {
   size: PropTypes.oneOf(['standard', 'big']),
   type: PropTypes.oneOf([GLOBAL_NOTIFICATION, LOCAL_NOTIFICATION]),
   timeout: PropTypes.number,
+  zIndex: PropTypes.number,
   children: PropTypes.any //TODO - add specific children?
 };
 
