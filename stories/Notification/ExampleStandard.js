@@ -2,9 +2,11 @@ import React, {Component, PropTypes} from 'react';
 
 import styles from './ExampleStandard.scss';
 import Notification from './Notification';
+import {LOCAL_NOTIFICATION, GLOBAL_NOTIFICATION, DEFAULT_TIMEOUT} from '../../src/Notification';
 import Label from '../../src/Label';
 import ToggleSwitch from '../../src/ToggleSwitch';
 import RadioGroup from '../../src/RadioGroup';
+import Input from '../../src/Input';
 
 class ExampleStandard extends Component {
 
@@ -15,9 +17,10 @@ class ExampleStandard extends Component {
   state = {
     notification: {
       show: true,
-      type: 'global',
+      type: GLOBAL_NOTIFICATION,
       size: 'big',
-      theme: 'standard'
+      theme: 'standard',
+      timeout: DEFAULT_TIMEOUT
     },
     label: {
       appearance: 'T1.2'
@@ -67,11 +70,24 @@ class ExampleStandard extends Component {
                 value={this.state.notification.type}
                 onChange={type => this.setComponentState('notification', {type})}
               >
-                <RadioGroup.Radio value="global">Global (push the content)</RadioGroup.Radio>
-                <RadioGroup.Radio value="local">Local (on top of the content)</RadioGroup.Radio>
+                <RadioGroup.Radio value={GLOBAL_NOTIFICATION}>Global (push the content)</RadioGroup.Radio>
+                <RadioGroup.Radio value={LOCAL_NOTIFICATION}>Local (on top of the content)</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>
+          {
+            this.state.notification.type === LOCAL_NOTIFICATION ?
+              <div className={styles.option}>
+                <Label>Timeout in ms (for local notifications)</Label>
+                <div className={styles.column}>
+                  <Input placeholder="Set the timeout" size="small" type="number"
+                         value={this.state.notification.timeout}
+                         onChange={e => this.setComponentState('notification', {timeout: Number(e.target.value)})}
+                  />
+                </div>
+              </div> :
+              null
+          }
           <div className={styles.option}>
             <Label>Theme</Label>
             <div className={styles.flex}>
@@ -119,65 +135,6 @@ class ExampleStandard extends Component {
         </div>
       </form>
     );
-    // return (
-    //   <from className={styles.form}>
-    //     <div className={styles.input}>
-    //       <div className={styles.option}>
-    //         <Label>Show label</Label>
-    //         <div className={styles.flex}>
-    //           <Input
-    //             size="small"
-    //             value={this.state.label.children}
-    //             onChange={e => this.setComponentState('label', {children: e.target.value})}
-    //             />&nbsp;
-    //           <ToggleSwitch
-    //             size="small"
-    //             checked={this.state.withLabel}
-    //             onChange={() => this.setState({withLabel: !this.state.withLabel})}
-    //             />
-    //         </div>
-    //       </div>
-    //       <div className={styles.option}>
-    //         <Label>Placeholder</Label>
-    //         <div className={styles.flex}>
-    //           <Input size="small"
-    //             value={this.state.inputArea.placeholder}
-    //             onChange={e => this.setComponentState('inputArea', {placeholder: e.target.value})}
-    //             />
-    //         </div>
-    //       </div>
-    //       <div className={styles.option}>
-    //         <Label>Input Area box size</Label>
-    //         <div className={styles.column}>
-    //           <Input size="small" type="number"
-    //                  placeholder="Set #rows"
-    //                  value={this.state.inputArea.rows}
-    //                  onChange={e => this.setComponentState('inputArea', {rows: e.target.value})}
-    //           />
-    //           <Input placeholder="Set min Height" size="small" type="number" unit="px"
-    //                  value={this.state.inputArea.minHeight}
-    //                  onChange={e => this.setComponentState('inputArea', {minHeight: e.target.value})}
-    //           />
-    //           <Input placeholder="Set max Height" size="small" type="number" unit="px"
-    //                  value={this.state.inputArea.maxHeight}
-    //                  onChange={e => this.setComponentState('inputArea', {maxHeight: e.target.value})}
-    //           />
-    //           <div className={styles.option}>
-    //             <Label>Resizable: </Label>
-    //             <ToggleSwitch
-    //               size="small"
-    //               checked={this.state.inputArea.resizable}
-    //               onChange={() => this.setComponentState('inputArea', {resizable: !this.state.inputArea.resizable})}
-    //             />
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <div className={styles.output}>
-    //       <Notification {...this.state} onChange={this.props.onChange}/>
-    //     </div>
-    //   </from>
-    // );
   }
 }
 

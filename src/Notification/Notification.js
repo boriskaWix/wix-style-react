@@ -4,8 +4,9 @@ import classNames from 'classnames';
 import css from './Notification.scss';
 import WixComponent from "../WixComponent";
 
-const LOCAL_NOTIFICATION = 'local';
-const GLOBAL_NOTIFICATION = 'global';
+export const LOCAL_NOTIFICATION = 'local';
+export const GLOBAL_NOTIFICATION = 'global';
+export const DEFAULT_TIMEOUT = 6000;
 
 function FirstChild(props) {
   const childrenArray = Children.toArray(props.children);
@@ -43,7 +44,7 @@ class Notification extends WixComponent {
 
   startCloseTimer() {
     if (this.props.type === LOCAL_NOTIFICATION) {
-      this.closeTimeout = setTimeout(() => this.setState({hiddenByTimer: true}), this.props.timeout);
+      this.closeTimeout = setTimeout(() => this.setState({hiddenByTimer: true}), this.props.timeout || DEFAULT_TIMEOUT);
     }
   }
 
@@ -143,8 +144,7 @@ Notification.defaultProps = {
   show: false,
   theme: 'standard',
   size: 'standard', //TODO - I don't like it but we need to set a size for the container to maintain animation
-  type: GLOBAL_NOTIFICATION,
-  timeout: 6000
+  type: GLOBAL_NOTIFICATION
 };
 
 export default Notification;
