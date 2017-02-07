@@ -163,35 +163,106 @@ describe('Notification', () => {
     let driver;
 
     beforeEach(() => {
-      //use fake timers to ignore animations timeouts
       jest.useFakeTimers();
     });
 
-    beforeEach(() => {
-      driver = createDriver(
-        <Notification show={true}>
-          <div>label</div>
-          <CloseButton/>
-        </Notification>
-      );
+    describe('Closing when Clicking on close button', () => {
+
+      beforeEach(() => {
+        driver = createDriver(
+          <Notification show={true}>
+            <div>label</div>
+            <CloseButton/>
+          </Notification>
+        );
+        driver.clickOnCloseButton();
+      });
+
+      beforeEach(() => {
+        jest.runAllTimers();
+      });
+
+      it('should close the notification when clicking on close button', () => {
+        expect(driver.visible()).toBeFalsy();
+      });
+
+      it('should allow reopening the notification after closed by close button', () => {
+        driver.setProps({show: true});
+        expect(driver.visible()).toBeTruthy();
+      });
     });
 
-    beforeEach(() => {
-      driver.clickOnCloseButton();
-      jest.runAllTimers();
+    describe('Closing after timeout for local Notification', () => {
+      const defaultTimeout = 6000;
+
+      it('should close after default timeout (6s)', () => {
+        driver = createDriver(
+          <Notification show={true} type="local">
+            <div>label</div>
+            <CloseButton/>
+          </Notification>
+        );
+
+        jest.runAllTimers();
+
+        expect(driver.visible()).toBeFalsy();
+        expect(setTimeout.mock.calls.find(call => call[1] === defaultTimeout)).toBeTruthy();
+      });
+
+      it('should close after a given timeout', () => {
+        const timeout = 132;
+
+        driver = createDriver(
+          <Notification show={true} type="local" timeout={timeout}>
+            <div>label</div>
+            <CloseButton/>
+          </Notification>
+        );
+
+        jest.runAllTimers();
+
+        expect(driver.visible()).toBeFalsy();
+        expect(setTimeout.mock.calls.find(call => call[1] === timeout)).toBeTruthy();
+      });
+
+      it('should be able to show notification again after timeout', () => {
+        driver = createDriver(
+          <Notification show={true} type="local">
+            <div>label</div>
+            <CloseButton/>
+          </Notification>
+        );
+
+        jest.runAllTimers();
+        expect(driver.visible()).toBeFalsy();
+        expect(setTimeout.mock.calls.find(call => call[1] === defaultTimeout)).toBeTruthy();
+        jest.clearAllTimers();
+
+        driver.setProps({show: true});
+        expect(driver.visible()).toBeTruthy();
+      });
+
+      it('should close after starting from a closed status', () => {
+        driver = createDriver(
+          <Notification show={false} type="local">
+            <div>label</div>
+            <CloseButton/>
+          </Notification>
+        );
+
+        jest.runAllTimers();
+        expect(driver.visible()).toBeFalsy();
+        driver.setProps({show: true});
+        expect(driver.visible()).toBeTruthy();
+        jest.runAllTimers();
+        expect(driver.visible()).toBeFalsy();
+
+        expect(setTimeout.mock.calls.find(call => call[1] === defaultTimeout)).toBeTruthy();
+      });
     });
 
     afterEach(() => {
       jest.clearAllTimers();
-    });
-
-    it('should close the notification when clicking on close button', () => {
-      expect(driver.visible()).toBeFalsy();
-    });
-
-    it('should allow reopening the notification after closed by close button', () => {
-      driver.setProps({show: true});
-      expect(driver.visible()).toBeTruthy();
     });
   });
 
@@ -199,7 +270,8 @@ describe('Notification', () => {
     it('should exist', () => {
       const div = document.createElement('div');
       const dataHook = 'myDataHook';
-      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Notification dataHook={dataHook}/></div>));
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Notification dataHook={dataHook}/>
+      </div>));
       const notificationTestkit = notificationTestkitFactory({wrapper, dataHook});
       expect(notificationTestkit.exists()).toBeTruthy();
     });

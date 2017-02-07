@@ -4,12 +4,15 @@ import classNames from 'classnames';
 import css from './Notification.scss';
 import WixComponent from "../WixComponent";
 
+const LOCAL_NOTIFICATION = 'local';
+const GLOBAL_NOTIFICATION = 'global';
+
 function FirstChild(props) {
   const childrenArray = Children.toArray(props.children);
   return childrenArray[0] || null;
 }
 
-const getChildren = (children) => {
+function getChildren(children) {
   const childrenArray = Children.toArray(children);
 
   if (childrenArray.length === 3) {
@@ -24,13 +27,23 @@ const getChildren = (children) => {
       closeButton: childrenArray[1]
     }
   }
-};
+}
 
 class Notification extends WixComponent {
+  closeTimeout;
   constructor(props) {
     super(props);
     this.state = {
-      hiddenByCloseClick: false
+      hiddenByCloseClick: false,
+      hiddenByTimer: false
+    };
+
+    this.startCloseTimer()
+  }
+
+  startCloseTimer() {
+    if (this.props.type === LOCAL_NOTIFICATION) {
+      this.closeTimeout = setTimeout(() => this.setState({hiddenByTimer: true}), this.props.timeout);
     }
   }
 
@@ -42,7 +55,16 @@ class Notification extends WixComponent {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.show) {
-      this.setState({hiddenByCloseClick: false})
+      this.setState({
+        hiddenByCloseClick: false,
+        hiddenByTimer: false
+      });
+
+      if(this.closeTimeout) {
+        clearTimeout(this.closeTimeout);
+        this.closeTimeout = null;
+      }
+      this.startCloseTimer();
     }
   }
 
@@ -55,7 +77,7 @@ class Notification extends WixComponent {
       children
     } = this.props;
 
-    const position = type === 'global' ? 'relative' : 'fixed';
+    const position = type === GLOBAL_NOTIFICATION ? 'relative' : 'fixed';
 
     const notificationClassName = classNames({
       [css.notificationWrapper]: true,
@@ -81,7 +103,7 @@ class Notification extends WixComponent {
           transitionLeaveTimeout={350}
         >
           {
-            show && !this.state.hiddenByCloseClick ?
+            show && !this.state.hiddenByCloseClick && !this.state.hiddenByTimer ?
               <div data-hook="notification-wrapper" className={notificationClassName}>
                 <div className={css.notificationContentWrapper}>
                   <div data-hook="notification-label" className={css.labelWrapper}>
@@ -112,7 +134,8 @@ Notification.propTypes = {
   show: PropTypes.bool,
   theme: PropTypes.oneOf(['standard', 'error', 'success', 'warning']),
   size: PropTypes.oneOf(['standard', 'big']),
-  type: PropTypes.oneOf(['global', 'local']),
+  type: PropTypes.oneOf([GLOBAL_NOTIFICATION, LOCAL_NOTIFICATION]),
+  timeout: PropTypes.number,
   children: PropTypes.any //TODO - add specific children?
 };
 
@@ -120,7 +143,8 @@ Notification.defaultProps = {
   show: false,
   theme: 'standard',
   size: 'standard', //TODO - I don't like it but we need to set a size for the container to maintain animation
-  type: 'global'
+  type: GLOBAL_NOTIFICATION,
+  timeout: 6000
 };
 
 export default Notification;
