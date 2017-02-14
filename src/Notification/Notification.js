@@ -102,6 +102,35 @@ class Notification extends WixComponent {
     });
   }
 
+  renderLabel(component) {
+    return (
+      <div data-hook="notification-label" className={css.labelWrapper}>
+        {component}
+      </div>
+    );
+  }
+
+  renderActionButton(component) {
+    return (
+      component ?
+        <div data-hook="notification-cta-button"
+             className={css.ctaButtonWrapper}>
+          {component}
+        </div> :
+        null
+    )
+  }
+
+  renderCloseButton(component) {
+    return (
+      <div data-hook="notification-close-button"
+           className={css.closeButtonWrapper}
+           onClick={e => this.hideNotificationOnCloseClick()}>
+        {component}
+      </div>
+    )
+  }
+
   render() {
     const {
       zIndex,
@@ -130,24 +159,10 @@ class Notification extends WixComponent {
                    className={this.getWrapperClassNames()}
                    style={{zIndex}}>
                 <div className={css.contentWrapper}>
-                  <div data-hook="notification-label"
-                       className={css.labelWrapper}>
-                    {childrenComponents.label}
-                  </div>
-                  {
-                    childrenComponents.ctaButton ?
-                      <div data-hook="notification-cta-button"
-                           className={css.ctaButtonWrapper}>
-                        {childrenComponents.ctaButton}
-                      </div> :
-                      null
-                  }
+                  {this.renderLabel(childrenComponents.label)}
+                  {this.renderActionButton(childrenComponents.ctaButton)}
                 </div>
-                <div data-hook="notification-close-button"
-                     className={css.closeButtonWrapper}
-                     onClick={e => this.hideNotificationOnCloseClick()}>
-                  {childrenComponents.closeButton}
-                </div>
+                {this.renderCloseButton(childrenComponents.closeButton)}
               </div> :
               null
           }
@@ -168,7 +183,6 @@ Notification.propTypes = {
 };
 
 Notification.defaultProps = {
-  show: false,
   theme: 'standard',
   size: 'standard', //TODO - I don't like it but we need to set a size for the container to maintain animation
   type: GLOBAL_NOTIFICATION
