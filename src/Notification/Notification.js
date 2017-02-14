@@ -97,7 +97,7 @@ class Notification extends WixComponent {
       size,
     } = this.props;
 
-    const position = type === GLOBAL_NOTIFICATION ? 'relative' : 'fixed';
+    const position = type === GLOBAL_NOTIFICATION ? 'relative' : 'absolute';
 
     return classNames({
       [css.notificationWrapper]: true,
@@ -150,7 +150,7 @@ class Notification extends WixComponent {
     const childrenComponents = mapChildren(children);
 
     return (
-      <div>
+      <div className={css.notificationComponent}>
         <ReactCSSTransitionGroup
           component={FirstChild}
           transitionName={{

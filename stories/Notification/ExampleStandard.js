@@ -54,6 +54,12 @@ class ExampleStandard extends Component {
         </div>
         <div className={styles.input}>
           <div className={styles.option}>
+            <div className={styles.flex}>
+              <Label>This text will be covered by a local notification</Label>
+            </div>
+            <hr/>
+          </div>
+          <div className={styles.option}>
             <Label>Show Notification</Label>
             <div className={styles.flex}>
               <ToggleSwitch

@@ -20,7 +20,7 @@ const notificationDriverFactory = ({component, wrapper}) => {
     getActionButtonText: () => wrapper.querySelector('[data-hook="notification-cta-button"]').textContent,
     hasCloseButton: () => !!wrapper.querySelector('[data-hook="notification-close-button"]'),
     isRelativelyPositioned: () => classExists('relativePosition'),
-    isFixedPositioned: () => classExists('fixedPosition'),
+    isAbsolutePositioned: () => classExists('absolutePosition'),
     clickOnCloseButton: () => ReactTestUtils.Simulate.click(wrapper.querySelector('[data-hook="notification-close-button"]')),
     getZIndex: () => Number(wrapper.querySelector('[data-hook="notification-wrapper"]').style['z-index']),
     setProps: props => {

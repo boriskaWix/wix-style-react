@@ -1,28 +1,30 @@
 @import '../common.scss';
 
-.notification-wrapper {
+.notification-component {
   position: relative;
-  width: 100%;
-  overflow: hidden;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .notification-wrapper {
+    overflow: hidden;
 
-  .content-wrapper {
-    flex: 1 0 auto;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    .label-wrapper {
+    .content-wrapper {
+      flex: 1 0 auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .label-wrapper {
+        margin-right: 12px;
+      }
+    }
+
+    .close-button-wrapper {
       margin-right: 12px;
     }
-  }
-
-  .close-button-wrapper {
-    margin-right: 12px;
   }
 }
 
@@ -30,11 +32,12 @@
 
 .relative-position {
   position: relative;
+  width: 100%;
 }
 
-.fixed-position {
-  position: fixed;
-  top: 0;
+.absolute-position {
+  position: absolute;
+  right: 0;
   left: 0;
 }
 
