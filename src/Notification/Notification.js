@@ -140,15 +140,28 @@ class Notification extends WixComponent {
     )
   }
 
-  render() {
+  renderNotification() {
     const {
       zIndex,
       children
     } = this.props;
 
-
     const childrenComponents = mapChildren(children);
 
+    return (
+      <div data-hook="notification-wrapper"
+           className={this.getWrapperClassNames()}
+           style={{zIndex}}>
+        <div className={css.contentWrapper}>
+          {this.renderLabel(childrenComponents.label)}
+          {this.renderActionButton(childrenComponents.ctaButton)}
+        </div>
+        {this.renderCloseButton(childrenComponents.closeButton)}
+      </div>
+    );
+  }
+
+  render() {
     return (
       <div className={css.notificationComponent}>
         <ReactCSSTransitionGroup
@@ -162,19 +175,7 @@ class Notification extends WixComponent {
           transitionEnterTimeout={animationsTimeouts.enter}
           transitionLeaveTimeout={animationsTimeouts.leave}
         >
-          {
-            this.shouldShowNotification() ?
-              <div data-hook="notification-wrapper"
-                   className={this.getWrapperClassNames()}
-                   style={{zIndex}}>
-                <div className={css.contentWrapper}>
-                  {this.renderLabel(childrenComponents.label)}
-                  {this.renderActionButton(childrenComponents.ctaButton)}
-                </div>
-                {this.renderCloseButton(childrenComponents.closeButton)}
-              </div> :
-              null
-          }
+          {this.shouldShowNotification() ? this.renderNotification() : null}
         </ReactCSSTransitionGroup>
       </div>
     )
