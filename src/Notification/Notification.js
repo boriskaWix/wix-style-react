@@ -8,6 +8,11 @@ export const LOCAL_NOTIFICATION = 'local';
 export const GLOBAL_NOTIFICATION = 'global';
 export const DEFAULT_TIMEOUT = 6000;
 
+const animationsTimeouts = {
+  enter: 500,
+  leave: 350
+};
+
 function FirstChild(props) {
   const childrenArray = Children.toArray(props.children);
   return childrenArray[0] || null;
@@ -104,7 +109,9 @@ class Notification extends WixComponent {
 
   renderLabel(component) {
     return (
-      <div data-hook="notification-label" className={css.labelWrapper}>
+      <div data-hook="notification-label"
+           key="label"
+           className={css.labelWrapper}>
         {component}
       </div>
     );
@@ -114,6 +121,7 @@ class Notification extends WixComponent {
     return (
       component ?
         <div data-hook="notification-cta-button"
+             key="cta"
              className={css.ctaButtonWrapper}>
           {component}
         </div> :
@@ -124,6 +132,7 @@ class Notification extends WixComponent {
   renderCloseButton(component) {
     return (
       <div data-hook="notification-close-button"
+           key="close"
            className={css.closeButtonWrapper}
            onClick={e => this.hideNotificationOnCloseClick()}>
         {component}
@@ -150,8 +159,8 @@ class Notification extends WixComponent {
             leave: css.notificationAnimationLeave,
             leaveActive: css.notificationAnimationLeaveActive,
           }}
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={350}
+          transitionEnterTimeout={animationsTimeouts.enter}
+          transitionLeaveTimeout={animationsTimeouts.leave}
         >
           {
             this.shouldShowNotification() ?
