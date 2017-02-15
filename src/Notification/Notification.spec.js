@@ -1,5 +1,5 @@
 import React from 'react';
-import {isTestkitExists, isEnzymeTestkitExists} from "../../testkit/test-common";
+import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
 import notificationDriverFactory from './Notification.driver';
 import {createDriverFactory} from '../test-common';
 import {notificationTestkitFactory} from '../../testkit';

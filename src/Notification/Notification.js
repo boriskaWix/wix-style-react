@@ -2,7 +2,7 @@ import React, {PropTypes, Children} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import classNames from 'classnames';
 import css from './Notification.scss';
-import WixComponent from "../WixComponent";
+import WixComponent from '../WixComponent';
 import {children, once, optional} from '../../src/Composite';
 import Label from '../Label/Label';
 import Button from '../Button/Button';
@@ -29,12 +29,12 @@ function mapChildren(children) {
       label: childrenArray[0],
       ctaButton: childrenArray[1],
       closeButton: childrenArray[2]
-    }
+    };
   } else {
     return {
       label: childrenArray[0],
       closeButton: childrenArray[1]
-    }
+    };
   }
 }
 
@@ -48,7 +48,7 @@ class Notification extends WixComponent {
       hideByTimer: false
     };
 
-    this.startCloseTimer()
+    this.startCloseTimer();
   }
 
   startCloseTimer() {
@@ -112,9 +112,7 @@ class Notification extends WixComponent {
 
   renderLabel(component) {
     return (
-      <div data-hook="notification-label"
-           key="label"
-           className={css.labelWrapper}>
+      <div data-hook="notification-label" key="label" className={css.labelWrapper}>
         {component}
       </div>
     );
@@ -123,24 +121,24 @@ class Notification extends WixComponent {
   renderActionButton(component) {
     return (
       component ?
-        <div data-hook="notification-cta-button"
-             key="cta"
-             className={css.ctaButtonWrapper}>
+        <div data-hook="notification-cta-button" key="cta" className={css.ctaButtonWrapper}>
           {component}
         </div> :
         null
-    )
+    );
   }
 
   renderCloseButton(component) {
     return (
-      <div data-hook="notification-close-button"
-           key="close"
-           className={css.closeButtonWrapper}
-           onClick={e => this.hideNotificationOnCloseClick()}>
+      <div
+        data-hook="notification-close-button"
+        key="close"
+        className={css.closeButtonWrapper}
+        onClick={() => this.hideNotificationOnCloseClick()}
+        >
         {component}
       </div>
-    )
+    );
   }
 
   renderNotification() {
@@ -152,9 +150,11 @@ class Notification extends WixComponent {
     const childrenComponents = mapChildren(children);
 
     return (
-      <div data-hook="notification-wrapper"
-           className={this.getWrapperClassNames()}
-           style={{zIndex}}>
+      <div
+        data-hook="notification-wrapper"
+        className={this.getWrapperClassNames()}
+        style={{zIndex}}
+        >
         <div className={css.contentWrapper}>
           {this.renderLabel(childrenComponents.label)}
           {this.renderActionButton(childrenComponents.ctaButton)}
@@ -177,11 +177,11 @@ class Notification extends WixComponent {
           }}
           transitionEnterTimeout={animationsTimeouts.enter}
           transitionLeaveTimeout={animationsTimeouts.leave}
-        >
+          >
           {this.shouldShowNotification() ? this.renderNotification() : null}
         </ReactCSSTransitionGroup>
       </div>
-    )
+    );
   }
 }
 
