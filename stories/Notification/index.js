@@ -6,8 +6,8 @@ import Markdown from '../utils/Components/Markdown';
 import Readme from '../../src/Notification/README.md';
 import ExampleStandard from './ExampleStandard';
 
-storiesOf('5. Others', module)
-  .add('5.8 Notification', () => {
+storiesOf('Core', module)
+  .add('Notification', () => {
     return (
       <div>
         <Markdown source={Readme}/>

@@ -66,12 +66,12 @@ describe('Notification', () => {
   describe('Sizes', () => {
     it('should have a default size', () => {
       const driver = createDriver(<Notification show/>);
-      expect(driver.isStandardSize()).toBeTruthy();
+      expect(driver.isSmallSize()).toBeTruthy();
     });
 
     it('should support standard height', () => {
-      const driver = createDriver(<Notification show size="standard"/>);
-      expect(driver.isStandardSize()).toBeTruthy();
+      const driver = createDriver(<Notification show size="small"/>);
+      expect(driver.isSmallSize()).toBeTruthy();
     });
 
     it('should support a big height', () => {

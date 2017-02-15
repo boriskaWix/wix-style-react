@@ -13,7 +13,7 @@ const notificationDriverFactory = ({component, wrapper}) => {
     isErrorNotification: () => classExists('errorTheme'),
     isSuccessNotification: () => classExists('successTheme'),
     isWarningNotification: () => classExists('warningTheme'),
-    isStandardSize: () => classExists('standardSize'),
+    isSmallSize: () => classExists('smallSize'),
     isBigSize: () => classExists('bigSize'),
     getLabelText: () => wrapper.querySelector('[data-hook="notification-label"]').textContent,
     hasActionButton: () => !!wrapper.querySelector('[data-hook="notification-cta-button"]'),

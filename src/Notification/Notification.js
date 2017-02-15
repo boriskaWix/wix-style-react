@@ -3,6 +3,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import classNames from 'classnames';
 import css from './Notification.scss';
 import WixComponent from "../WixComponent";
+import {children, once, optional} from '../../src/Composite';
+import Label from '../Label/Label';
+import Button from '../Button/Button';
 
 export const LOCAL_NOTIFICATION = 'local';
 export const GLOBAL_NOTIFICATION = 'global';
@@ -185,16 +188,16 @@ class Notification extends WixComponent {
 Notification.propTypes = {
   show: PropTypes.bool,
   theme: PropTypes.oneOf(['standard', 'error', 'success', 'warning']),
-  size: PropTypes.oneOf(['standard', 'big']),
+  size: PropTypes.oneOf(['small', 'big']),
   type: PropTypes.oneOf([GLOBAL_NOTIFICATION, LOCAL_NOTIFICATION]),
   timeout: PropTypes.number,
   zIndex: PropTypes.number,
-  children: PropTypes.any
+  children: children(once(Label), once(Button), optional(Button))
 };
 
 Notification.defaultProps = {
   theme: 'standard',
-  size: 'standard', //TODO - I don't like it but we need to set a size for the container to maintain animation
+  size: 'small',
   type: GLOBAL_NOTIFICATION
 };
 

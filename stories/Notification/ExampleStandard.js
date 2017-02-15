@@ -42,7 +42,7 @@ class ExampleStandard extends Component {
   }
 
   setNotificationSize(actionButtonIsShown, actionButtonType) {
-    const size = actionButtonIsShown && actionButtonType === 'button' ? 'big' : 'standard';
+    const size = actionButtonIsShown && actionButtonType === 'button' ? 'big' : 'small';
     this.setComponentState('notification', {size});
   }
 
@@ -124,7 +124,7 @@ class ExampleStandard extends Component {
             </div>
           </div>
           <div className={styles.option}>
-            <Label>Theme</Label>
+            <Label>Button Type</Label>
             <div className={styles.flex}>
               <RadioGroup
                 display="horizontal"
