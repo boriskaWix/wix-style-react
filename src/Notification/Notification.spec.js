@@ -182,7 +182,9 @@ describe('Notification', () => {
       });
 
       it('should close the notification', () => {
-        expect(driver.visible()).toBeFalsy();
+        return resolveIn(500).then(() => {
+          expect(driver.visible()).toBeFalsy();
+        });
       });
 
       it('should allow reopening the notification after closed by close button', () => {
@@ -285,3 +287,11 @@ describe('Notification', () => {
     });
   });
 });
+
+function resolveIn(timeout) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({});
+    }, timeout);
+  });
+}
