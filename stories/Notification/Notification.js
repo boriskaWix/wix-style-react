@@ -29,7 +29,6 @@ export default class Form extends Component {
   }
 
   getCtaButton() {
-
     return this.props.actionButton.type === 'button' ?
       <Button height="small" theme="transparent">
         Thanks

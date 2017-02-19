@@ -99,23 +99,6 @@ class ExampleStandard extends Component {
               </div> :
               null
           }
-{/*
-          <div className={styles.option}>
-            <Label>Theme</Label>
-            <div className={styles.flex}>
-              <RadioGroup
-                display="horizontal"
-                value={this.state.notification.theme}
-                onChange={theme => this.setComponentState('notification', {theme})}
-              >
-                <RadioGroup.Radio value="standard">Standard</RadioGroup.Radio>
-                <RadioGroup.Radio value="error">Error</RadioGroup.Radio>
-                <RadioGroup.Radio value="success">Success</RadioGroup.Radio>
-                <RadioGroup.Radio value="warning">Warning</RadioGroup.Radio>
-              </RadioGroup>
-            </div>
-          </div>
-*/}
           <div className={styles.option}>
             <Label>Button Type</Label>
             <div className={styles.flex}>
