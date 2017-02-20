@@ -8,10 +8,24 @@ import {tabsTestkitFactory} from '../../testkit';
 import {tabsTestkitFactory as enzymeTabsTestkitFactory} from '../../testkit/enzyme';
 
 describe('Tabs component', () => {
-  it('should exist', () => {
-    const driver = createComponent();
+  let items;
+  beforeEach(() => {
+    items = [{ id: 0, title: 'Tab 0'}, { id: 1, title: 'Tab 1'}, { id: 2, title: 'Tab 2'}];
+  });
 
-    expect(driver.exists()).toBeTruthy();
+  it('should render tabs with correct titles', () => {
+    const driver = createComponent({ items });
+    const expected = items.map(item => item.title);
+
+    expect(driver.getTitles()).toEqual(expected);
+  });
+
+  it('should call onClick when tab is clicked', () => {
+    const onClick = jest.fn();
+    const driver = createComponent({ items, onClick });
+
+    driver.clickTabAt(1);
+    expect(onClick).toHaveBeenCalledWith(items[1]);
   });
 
   const createDriver = createDriverFactory(tabsDriverFactory);
@@ -24,7 +38,9 @@ describe('testkit', () => {
   it('should exist', () => {
     const div = document.createElement('div');
     const dataHook = 'myDataHook';
-    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Tabs dataHook={dataHook}/></div>));
+    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
+      <div><Tabs items={[]} dataHook={dataHook}/></div>)
+    );
     const breadcrumbsTestkit = tabsTestkitFactory({wrapper, dataHook});
     expect(breadcrumbsTestkit.exists()).toBeTruthy();
   });
@@ -33,7 +49,7 @@ describe('testkit', () => {
 describe('enzyme testkit', () => {
   it('should exist', () => {
     const dataHook = 'myDataHook';
-    const wrapper = mount(<Tabs dataHook={dataHook}/>);
+    const wrapper = mount(<Tabs items={[]} dataHook={dataHook}/>);
     const breadcrumbsTestkit = enzymeTabsTestkitFactory({wrapper, dataHook});
     expect(breadcrumbsTestkit.exists()).toBeTruthy();
   });

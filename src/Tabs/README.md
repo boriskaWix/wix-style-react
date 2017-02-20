@@ -6,7 +6,7 @@
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
 | items | array of objects (see item)| - | + | Specifies tabs |
-| onSelect | func | - | - | callback on tab select |
+| onClick | func | - | + | callback on tab click |
 | selectedIndex | string, int | - | - | index of selected tab |
 | type | string ('default', 'compact', 'uniformSide', 'uniformFull') | 'default' | - | tabs type |
 
