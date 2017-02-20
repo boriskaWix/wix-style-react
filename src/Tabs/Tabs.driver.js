@@ -1,11 +1,16 @@
 import React from 'react';
+import {render} from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
+import Tabs from './Tabs';
+import styles from './Tabs.scss';
 
-const tabsDriverFactory = ({component}) => {
+const tabsDriverFactory = ({component, wrapper}) => {
   return {
     exists: () => !!component,
     getTitles: () => [...component.childNodes].map(childNode => childNode.textContent),
     clickTabAt: index => ReactTestUtils.Simulate.click(component.childNodes[index]),
+    getActiveTabIndex: () => [...component.childNodes].findIndex(childNode => childNode.classList.contains(styles.active)),
+    setProps: props => render(<div ref={r => component = r.childNodes[0]}><Tabs {...props}/></div>, wrapper),
   };
 };
 

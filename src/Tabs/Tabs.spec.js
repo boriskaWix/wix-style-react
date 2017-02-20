@@ -28,6 +28,17 @@ describe('Tabs component', () => {
     expect(onClick).toHaveBeenCalledWith(items[1]);
   });
 
+  it('should mark tab as active', () => {
+    const driver = createComponent({ items, activeId: 2 });
+    expect(driver.getActiveTabIndex()).toBe(2);
+  });
+
+  it('should change active tab', () => {
+    const driver = createComponent({ items, activeId: 2 });
+    driver.setProps({items, activeId: 1});
+    expect(driver.getActiveTabIndex()).toBe(1);
+  });
+
   const createDriver = createDriverFactory(tabsDriverFactory);
   function createComponent(props) {
     return createDriver(<Tabs {...props}/>);
