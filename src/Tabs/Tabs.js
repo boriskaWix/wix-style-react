@@ -5,7 +5,7 @@ import styles from './Tabs.scss';
 
 class Tabs extends WixComponent {
   render() {
-    const { items, onClick, activeId } = this.props;
+    const { items, onClick, activeId, type } = this.props;
     const tabs = items.map(item => {
       const className = classNames({
         [styles.active]: item.id === activeId
@@ -17,9 +17,10 @@ class Tabs extends WixComponent {
       )
     });
 
-    return <ul>{tabs}</ul>;
+    return <ul className={type}>{tabs}</ul>;
   }
 }
+export const tabTypes = ['compact', 'uniformSide', 'uniformFull'];
 
 Tabs.propTypes = {
   items: PropTypes.arrayOf(React.PropTypes.shape({
@@ -34,6 +35,7 @@ Tabs.propTypes = {
     React.PropTypes.string,
     React.PropTypes.number
   ]),
+  type: PropTypes.oneOf(tabTypes)
 };
 
 export default Tabs;

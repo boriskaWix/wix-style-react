@@ -39,29 +39,40 @@ describe('Tabs component', () => {
     expect(driver.getActiveTabIndex()).toBe(1);
   });
 
+  it('should have default type when not specified', () => {
+    const driver = createComponent({ items });
+    expect(driver.isDefaultType()).toBeTruthy();
+  });
+
+  it('should get custom style', () => {
+    const type = 'compact';
+    const driver = createComponent({ items, type });
+    expect(driver.isOfType('compact')).toBeTruthy();
+  });
+
   const createDriver = createDriverFactory(tabsDriverFactory);
   function createComponent(props) {
     return createDriver(<Tabs {...props}/>);
   }
-});
 
-describe('testkit', () => {
-  it('should exist', () => {
-    const div = document.createElement('div');
-    const dataHook = 'myDataHook';
-    const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
-      <div><Tabs items={[]} dataHook={dataHook}/></div>)
-    );
-    const breadcrumbsTestkit = tabsTestkitFactory({wrapper, dataHook});
-    expect(breadcrumbsTestkit.exists()).toBeTruthy();
+  describe('testkit', () => {
+    it('should exist', () => {
+      const div = document.createElement('div');
+      const dataHook = 'myDataHook';
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
+        <div><Tabs items={[]} dataHook={dataHook}/></div>)
+      );
+      const breadcrumbsTestkit = tabsTestkitFactory({wrapper, dataHook});
+      expect(breadcrumbsTestkit.exists()).toBeTruthy();
+    });
   });
-});
 
-describe('enzyme testkit', () => {
-  it('should exist', () => {
-    const dataHook = 'myDataHook';
-    const wrapper = mount(<Tabs items={[]} dataHook={dataHook}/>);
-    const breadcrumbsTestkit = enzymeTabsTestkitFactory({wrapper, dataHook});
-    expect(breadcrumbsTestkit.exists()).toBeTruthy();
+  describe('enzyme testkit', () => {
+    it('should exist', () => {
+      const dataHook = 'myDataHook';
+      const wrapper = mount(<Tabs items={[]} dataHook={dataHook}/>);
+      const breadcrumbsTestkit = enzymeTabsTestkitFactory({wrapper, dataHook});
+      expect(breadcrumbsTestkit.exists()).toBeTruthy();
+    });
   });
 });
