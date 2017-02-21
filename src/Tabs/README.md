@@ -7,14 +7,14 @@
 |----------|----------|--------------|------------|-------------|
 | items | array of objects (see item)| - | + | Specifies tabs |
 | onClick | func | - | + | callback on tab click |
-| selectedIndex | string, int | - | - | index of selected tab |
+| activeId | string or number | - | - | index of selected tab |
 | type | string ('default', 'compact', 'uniformSide', 'uniformFull') | 'default' | - | tabs type |
 
 ## Item
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| id | number or string| - | + | Specifies the item id |
+| id | string or number| - | + | Specifies the item id |
 | title | string or node | - | + | Value to be shown on tab |
 
 
