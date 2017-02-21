@@ -10,9 +10,7 @@ export default class Form extends Component {
     onChange: PropTypes.func.isRequired,
     notification: PropTypes.object,
     withActionButton: PropTypes.bool,
-    actionButton: PropTypes.object,
-    link: PropTypes.string,
-    actionButtonText: PropTypes.string,
+    actionButton: PropTypes.object
   };
 
   componentDidUpdate(props) {
@@ -26,11 +24,11 @@ export default class Form extends Component {
   getCtaButton() {
     const props = {};
     if(this.props.actionButton.type === 'textLink' ) {
-      props.link = this.props.link;
+      props.link = this.props.actionButton.link;
     }
     return (
       <Notification.ActionButton {...props} type={this.props.actionButton.type}>
-        {this.props.actionButtonText}
+        {this.props.actionButton.text}
       </Notification.ActionButton>
     );
   }
