@@ -24,10 +24,7 @@ class ExampleStandard extends Component {
       zIndex: 10000,
     },
     link: 'https://www.wix.com',
-    linkText: 'Thanks',
-    label: {
-      appearance: 'T1.2'
-    },
+    actionButtonText: 'Thanks',
     actionButton: {
       type: 'button'
     }
@@ -117,19 +114,23 @@ class ExampleStandard extends Component {
             </div>
           </div>
           {
-            (this.state.actionButton.type !== 'textLink') ? null :
+            (this.state.actionButton.type === 'none') ? null :
               <div>
-                <div className={styles.option}>
-                  <Label>Link</Label>
-                  <div className={styles.flex}>
-                    <Input value={this.state.link} onChange={event => this.setState({link: event.target.value})}/>
-                  </div>
-                </div>
-
+                {
+                  this.state.actionButton.type !== 'textLink' ? null :
+                    <div className={styles.option}>
+                      <Label>Link</Label>
+                      <div className={styles.flex}>
+                        <Input value={this.state.link} size="small"
+                               onChange={event => this.setState({link: event.target.value})}/>
+                      </div>
+                    </div>
+                }
                 <div className={styles.option}>
                   <Label>Text</Label>
                   <div className={styles.flex}>
-                    <Input value={this.state.linkText} onChange={event => this.setState({linkText: event.target.value})}/>
+                    <Input value={this.state.actionButtonText} size="small"
+                           onChange={event => this.setState({actionButtonText: event.target.value})}/>
                   </div>
                 </div>
               </div>

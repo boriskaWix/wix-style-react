@@ -1,0 +1,11 @@
+import React, {PropTypes} from 'react';
+import Button from '../../Button/Button';
+import {Close} from '../../Icons';
+
+const CloseButton = () =>(
+  <Button height="medium" theme="close-transparent" onClick={e => e.preventDefault()}>
+    <Close size="6px"/>
+  </Button>
+);
+
+export default CloseButton
