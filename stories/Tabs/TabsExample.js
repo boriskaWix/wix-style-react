@@ -33,7 +33,7 @@ class TabsExample extends Component {
   }
 }
 
-TabsTemplate.propTypes = {
+TabsExample.propTypes = {
   onChange: PropTypes.func,
 };
 
