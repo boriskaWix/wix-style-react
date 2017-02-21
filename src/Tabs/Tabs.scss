@@ -1,5 +1,8 @@
+@import '../common.scss';
+
 .active {
-  color: red;
+  border-bottom: 2px solid $B10;
+  opacity: 0.9;
 }
 
 .compact {
