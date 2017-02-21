@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 import WixComponent from '../WixComponent';
+import Label from '../Label';
 import styles from './Tabs.scss';
 
 class Tabs extends WixComponent {
@@ -12,7 +13,7 @@ class Tabs extends WixComponent {
       });
       return (
         <li key={item.id} onClick={() => onClick(item)} className={className}>
-          {item.title}
+          <Label appearance="T.1">{item.title}</Label>
         </li>
       );
     });
