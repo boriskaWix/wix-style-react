@@ -25,7 +25,7 @@ class TabsExample extends Component {
             <RadioGroup.Radio value="uniformFull">Uniform (Full)</RadioGroup.Radio>
           </RadioGroup>
         </div>
-        <TabsTemplate onChange={this.props.onChange} type={this.state.type}/>
+        <TabsTemplate onChange={this.props.onChange} type={this.state.type} activeId={1}/>
       </div>
     );
   }
