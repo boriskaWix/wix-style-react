@@ -25,6 +25,7 @@
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 
   .compact & {
     padding-right: 0;
