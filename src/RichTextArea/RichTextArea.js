@@ -1,74 +1,41 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Editor, Raw } from 'slate'
 import WixComponent from '../WixComponent';
+import htmlSerializer from './htmlSerializer';
 
 class RichTextArea extends WixComponent {
   constructor(props) {
     super(props);
-    const editorState = Raw.deserialize({
-      nodes: [
-        {
-          kind: 'block',
-          type: 'paragraph',
-          nodes: [
-            {
-              kind: 'text',
-              text: props.value || ''
-            }
-          ]
-        }
-      ]
-    }, { terse: true });
-
-    // Set the initial state when the app is first constructed.
     this.state = {
-      editorState,
-      schema: {
-        nodes: {
-          code: CodeNode
-        }
-      }
+      editorState: htmlSerializer.deserialize(props.value),
     };
   }
 
-
-  // On change, update the app's React state with the new editor state.
   onChange = (state) => {
-    this.setState({ state })
+    const { onChange } = this.props;
+    this.setState({ editorState: state });
+    onChange && onChange(htmlSerializer.serialize(state));
   };
 
-  onKeyDown = (event, data, state) => {
-    if (event.which != 191) return;
-
-    event.preventDefault();
-
-    const isCode = state.blocks.some(block => block.type == 'code');
-
-    // Toggle the block type depending on `isCode`.
-    return state
-      .transform()
-      .setBlock(isCode ? 'paragraph' : 'code')
-      .apply()
-  };
-
-
-  // Render the editor.
   render = () => {
     return (
-      <Editor
-        schema={this.state.schema}
-        state={this.state.editorState}
-        onChange={this.onChange}
-        onKeyDown={this.onKeyDown}
-      />
+      <div>
+        <Editor
+          state={this.state.editorState}
+          onChange={this.onChange}
+        />
+      </div>
     )
   };
-
 }
 
-function CodeNode(props) {
-  return <pre {...props.attributes}><code>{props.children}</code></pre>
-}
+RichTextArea.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+};
 
+RichTextArea.defaultProps = {
+  value: '<p></p>',
+};
 
 export default RichTextArea;
