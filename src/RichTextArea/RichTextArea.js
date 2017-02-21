@@ -3,7 +3,7 @@ import WixComponent from '../WixComponent';
 
 class RichTextArea extends WixComponent {
   render() {
-    return <div/>;
+    return <div>RichTextArea</div>;
   }
 }
 
