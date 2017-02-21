@@ -14,7 +14,7 @@
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| index | number| - | + | Specifies the item index |
+| id | number| - | + | Specifies the item index |
 | title | string or node | - | + | Value to be shown on tab |
 
 
