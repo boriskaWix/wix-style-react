@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import Tabs from '../../src/Tabs';
 
-const items = [{id: 1, title: 'first item'}, {id: 2, title: 'second item'}, {id: 3, title: 'third item'}];
+const items = [{id: 1, title: 'First item'}, {id: 2, title: 'Second item'.repeat(2)}, {id: 3, title: 'Third item'}];
 
 class TabsTemplate extends Component {
   componentDidUpdate(props) {

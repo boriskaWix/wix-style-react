@@ -1,24 +1,27 @@
 import React, {PropTypes} from 'react';
 import classNames from 'classnames';
 import WixComponent from '../WixComponent';
-import Label from '../Label';
 import styles from './Tabs.scss';
 
 class Tabs extends WixComponent {
   render() {
     const {items, onClick, activeId, type} = this.props;
     const tabs = items.map(item => {
-      const className = classNames({
+      const className = classNames(styles.tab, {
         [styles.active]: item.id === activeId
       });
       return (
         <li key={item.id} onClick={() => onClick(item)} className={className}>
-          <Label appearance="T.1">{item.title}</Label>
+          {item.title}
         </li>
       );
     });
 
-    return <ul className={type}>{tabs}</ul>;
+    return (
+      <div className={styles[type]}>
+        <ul className={styles.container}>{tabs}</ul>
+      </div>
+    );
   }
 }
 
