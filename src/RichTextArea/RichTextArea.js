@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react'
-import { Editor, Raw } from 'slate'
+import React, {PropTypes} from 'react';
+import {Editor} from 'slate';
 import WixComponent from '../WixComponent';
 import htmlSerializer from './htmlSerializer';
 
@@ -11,9 +11,9 @@ class RichTextArea extends WixComponent {
     };
   }
 
-  onChange = (state) => {
-    const { onChange } = this.props;
-    this.setState({ editorState: state });
+  onChange = state => {
+    const {onChange} = this.props;
+    this.setState({editorState: state});
     onChange && onChange(htmlSerializer.serialize(state));
   };
 
@@ -23,9 +23,9 @@ class RichTextArea extends WixComponent {
         <Editor
           state={this.state.editorState}
           onChange={this.onChange}
-        />
+          />
       </div>
-    )
+    );
   };
 }
 

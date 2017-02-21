@@ -3,7 +3,6 @@ import reactElementToJSXString from 'react-element-to-jsx-string';
 import RichTextArea from '../../src/RichTextArea';
 
 class RichTextAreaTemplate extends Component {
-  state = {};
   componentDidUpdate(props) {
     props.onChange(reactElementToJSXString(this.getComponent()));
   }
@@ -14,7 +13,7 @@ class RichTextAreaTemplate extends Component {
 
   handleChange = value => {
     console.log(value);
-  }
+  };
 
   getComponent() {
     return <RichTextArea onChange={this.handleChange}/>;
