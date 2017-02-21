@@ -19,6 +19,7 @@ const ActionButton = ({children, onClick, type, link}) => {
 };
 
 ActionButton.propTypes = {
+  children: PropTypes.string,
   onClick: PropTypes.func,
   link: PropTypes.string,
   type: PropTypes.string
@@ -28,5 +29,7 @@ ActionButton.defaultProps = {
   onClick: e => e.preventDefault(),
   type: 'button'
 };
+
+ActionButton.displayName = 'Notification.ActionButton';
 
 export default ActionButton;

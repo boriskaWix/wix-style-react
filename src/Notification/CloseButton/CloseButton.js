@@ -1,11 +1,13 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
 import Button from '../../Button/Button';
 import {Close} from '../../Icons';
 
-const CloseButton = () =>(
+const CloseButton = () => (
   <Button height="medium" theme="close-transparent" onClick={e => e.preventDefault()}>
     <Close size="6px"/>
   </Button>
 );
 
-export default CloseButton
+CloseButton.displayName = 'Notification.CloseButton';
+
+export default CloseButton;

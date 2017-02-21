@@ -298,9 +298,9 @@ describe('Notification', () => {
   describe('Notification.ActionButton', () => {
     it('should display a Button when passing by default', () => {
       const component = mount(
-          <Notification.ActionButton>
-            Action Button
-          </Notification.ActionButton>
+        <Notification.ActionButton>
+          Action Button
+        </Notification.ActionButton>
       );
 
       expect(component.find('Button').length).toEqual(1);
@@ -327,7 +327,7 @@ describe('Notification', () => {
     });
 
     it('should allow attaching action button onClick handler', () => {
-      var onClickMock = jest.fn();
+      const onClickMock = jest.fn();
 
       const component = mount(
         <Notification.ActionButton onClick={onClickMock}>

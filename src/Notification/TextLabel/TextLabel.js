@@ -11,4 +11,6 @@ TextLabel.propTypes = {
   children: PropTypes.any
 };
 
+TextLabel.displayName = 'Notification.TextLabel';
+
 export default TextLabel;
