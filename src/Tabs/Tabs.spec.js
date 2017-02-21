@@ -10,11 +10,11 @@ import {tabsTestkitFactory as enzymeTabsTestkitFactory} from '../../testkit/enzy
 describe('Tabs component', () => {
   let items;
   beforeEach(() => {
-    items = [{ id: 0, title: 'Tab 0'}, { id: 1, title: 'Tab 1'}, { id: 2, title: 'Tab 2'}];
+    items = [{id: 0, title: 'Tab 0'}, {id: 1, title: 'Tab 1'}, {id: 2, title: 'Tab 2'}];
   });
 
   it('should render tabs with correct titles', () => {
-    const driver = createComponent({ items });
+    const driver = createComponent({items});
     const expected = items.map(item => item.title);
 
     expect(driver.getTitles()).toEqual(expected);
@@ -22,31 +22,31 @@ describe('Tabs component', () => {
 
   it('should call onClick when tab is clicked', () => {
     const onClick = jest.fn();
-    const driver = createComponent({ items, onClick });
+    const driver = createComponent({items, onClick});
 
     driver.clickTabAt(1);
     expect(onClick).toHaveBeenCalledWith(items[1]);
   });
 
   it('should mark tab as active', () => {
-    const driver = createComponent({ items, activeId: 2 });
+    const driver = createComponent({items, activeId: 2});
     expect(driver.getActiveTabIndex()).toBe(2);
   });
 
   it('should change active tab', () => {
-    const driver = createComponent({ items, activeId: 2 });
+    const driver = createComponent({items, activeId: 2});
     driver.setProps({items, activeId: 1});
     expect(driver.getActiveTabIndex()).toBe(1);
   });
 
   it('should have default type when not specified', () => {
-    const driver = createComponent({ items });
+    const driver = createComponent({items});
     expect(driver.isDefaultType()).toBeTruthy();
   });
 
   it('should get custom style', () => {
     const type = 'compact';
-    const driver = createComponent({ items, type });
+    const driver = createComponent({items, type});
     expect(driver.isOfType('compact')).toBeTruthy();
   });
 
