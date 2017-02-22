@@ -3,18 +3,18 @@ import ReactTestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import Tooltip from './Tooltip';
 
-const tooltipDriverFactory = ({component, wrapper}) => {
+const tooltipDriverFactory = ({element, wrapper}) => {
   return {
     isShown: () => !!document.body.querySelector('.tooltip'),
-    focus: () => ReactTestUtils.Simulate.focus(component),
-    blur: () => ReactTestUtils.Simulate.blur(component),
-    click: () => ReactTestUtils.Simulate.click(component),
-    mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(component),
-    mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(component),
+    focus: () => ReactTestUtils.Simulate.focus(element),
+    blur: () => ReactTestUtils.Simulate.blur(element),
+    click: () => ReactTestUtils.Simulate.click(element),
+    mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(element),
+    mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(element),
     hasErrorTheme: () => !!document.body.querySelector('.error'),
     hasDarkTheme: () => !!document.body.querySelector('.dark'),
     hasLightTheme: () => !!document.body.querySelector('.light'),
-    getChildren: () => component.innerHTML,
+    getChildren: () => element.innerHTML,
     getContent: () => {
       let content = document.body.querySelector('.tooltip');
       while (content.children.length > 0) {
@@ -23,7 +23,7 @@ const tooltipDriverFactory = ({component, wrapper}) => {
       return content.innerHTML;
     },
     setProps: props => {
-      ReactDOM.render(<div ref={r => component = r}><Tooltip {...props}/></div>, wrapper);
+      ReactDOM.render(<div ref={r => element = r}><Tooltip {...props}/></div>, wrapper);
     }
   };
 };
