@@ -37,10 +37,6 @@
     flex: 1;
   }
 
-  .hasDivider  & {
-    padding-bottom: 16px;
-  }
-
   &:hover {
     @extend .t1_3;
   }
