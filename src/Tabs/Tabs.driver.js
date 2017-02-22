@@ -5,7 +5,7 @@ import Tabs from './Tabs';
 import styles from './Tabs.scss';
 
 const tabsDriverFactory = ({component, wrapper}) => {
-  const getTabs = () => [...component.childNodes[0].childNodes];
+  const getTabs = () => [...component.childNodes];
   return {
     exists: () => !!component,
     getTitles: () => getTabs().map(childNode => childNode.textContent),

@@ -17,11 +17,7 @@ class Tabs extends WixComponent {
       );
     });
 
-    return (
-      <div className={styles[type]}>
-        <ul className={styles.container}>{tabs}</ul>
-      </div>
-    );
+    return <ul className={classNames(styles[type], styles.container)}>{tabs}</ul>;
   }
 }
 
