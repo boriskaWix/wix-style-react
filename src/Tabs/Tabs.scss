@@ -7,8 +7,12 @@
   max-width: 100%;
   margin: 0;
   padding: 0;
-  border-bottom: 1px solid $D60;
+  border-bottom: 1px solid transparent;
   list-style: none;
+
+  &.hasDivider {
+    border-color: $D60;
+  }
 }
 
 .tab {
@@ -31,6 +35,10 @@
 
   .uniformFull & {
     flex: 1;
+  }
+
+  .hasDivider  & {
+    padding-bottom: 16px;
   }
 
   &:hover {

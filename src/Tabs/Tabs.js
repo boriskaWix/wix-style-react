@@ -5,7 +5,7 @@ import styles from './Tabs.scss';
 
 class Tabs extends WixComponent {
   render() {
-    const {items, onClick, activeId, type} = this.props;
+    const {items, onClick, activeId, type, hasDivider} = this.props;
     const tabs = items.map(item => {
       const className = classNames(styles.tab, {
         [styles.active]: item.id === activeId
@@ -16,8 +16,11 @@ class Tabs extends WixComponent {
         </li>
       );
     });
+    const className = classNames(styles[type], styles.container, {
+      [styles.hasDivider]: hasDivider,
+    });
 
-    return <ul className={classNames(styles[type], styles.container)}>{tabs}</ul>;
+    return <ul className={className}>{tabs}</ul>;
   }
 }
 
@@ -36,7 +39,12 @@ Tabs.propTypes = {
     React.PropTypes.string,
     React.PropTypes.number
   ]),
-  type: PropTypes.oneOf(Tabs.tabTypes)
+  type: PropTypes.oneOf(Tabs.tabTypes),
+  hasDivider: PropTypes.bool,
+};
+
+Tabs.defaultProps = {
+  hasDivider: true,
 };
 
 export default Tabs;
