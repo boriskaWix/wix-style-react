@@ -1,10 +1,10 @@
 import React from 'react';
-import {render} from 'react-dom';
+import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
 import Tabs from './Tabs';
 import styles from './Tabs.scss';
 
-const tabsDriverFactory = ({element, wrapper}) => {
+const tabsDriverFactory = ({element, wrapper, component}) => {
   const getTabs = () => [...element.childNodes];
   return {
     exists: () => !!element,
@@ -15,7 +15,10 @@ const tabsDriverFactory = ({element, wrapper}) => {
     isOfType: type => element.classList.contains(styles[type]),
     hasDivider: () => element.classList.contains(styles.hasDivider),
     getTabsWidth: () => new Set(getTabs().map(item => item.style.width)),
-    setProps: props => render(<div ref={r => element = r.childNodes[0]}><Tabs {...props}/></div>, wrapper)
+    setProps: props => {
+      const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
+      ReactDOM.render(<div ref={r => element = r.childNodes[0]}>{ClonedWithProps}</div>, wrapper);
+    }
   };
 };
 
