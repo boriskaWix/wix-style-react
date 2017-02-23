@@ -47,6 +47,7 @@ Tabs.propTypes = {
   ]),
   type: PropTypes.oneOf(Tabs.tabTypes),
   hasDivider: PropTypes.bool,
+  width: PropTypes.string,
 };
 
 Tabs.defaultProps = {
