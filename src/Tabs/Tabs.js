@@ -5,13 +5,19 @@ import styles from './Tabs.scss';
 
 class Tabs extends WixComponent {
   render() {
-    const {items, onClick, activeId, type, hasDivider} = this.props;
+    const {items, onClick, activeId, type, hasDivider, width} = this.props;
+    const style = {};
     const tabs = items.map(item => {
       const className = classNames(styles.tab, {
         [styles.active]: item.id === activeId
       });
+
+      if (type === 'uniformSide') {
+        style.width = width;
+      }
+
       return (
-        <li key={item.id} onClick={() => onClick(item)} className={className}>
+        <li key={item.id} onClick={() => onClick(item)} className={className} style={style}>
           {item.title}
         </li>
       );
