@@ -96,9 +96,9 @@ class RichTextArea extends WixComponent {
   };
 
   handleBlockButtonClick = type => {
-    let { editorState } = this.state;
+    let {editorState} = this.state;
     let transform = editorState.transform();
-    const { document } = editorState;
+    const {document} = editorState;
 
     // Handle everything but list buttons.
     if (type !== 'unordered-list' && type !== 'ordered-list') {
@@ -151,14 +151,23 @@ class RichTextArea extends WixComponent {
     if (this.hasLink()) {
       transform
         .unwrapInline('link');
-    } else {
+    } else if (editorState.isExpanded) {
       transform
-        .insertText(text)
-        .extendBackward(text.length)
         .wrapInline({
           type: 'link',
           data: {href}
         })
+        .focus()
+        .collapseToEnd()
+    } else {
+      transform
+        .insertText(text || href)
+        .extendBackward((text || href).length)
+        .wrapInline({
+          type: 'link',
+          data: {href}
+        })
+        .focus()
         .collapseToEnd();
     }
 
@@ -183,6 +192,7 @@ class RichTextArea extends WixComponent {
             hasMark={this.hasMark}
             hasListBlock={this.hasListBlock}
             hasLink={this.hasLink}
+            isSelectionExpanded={editorState.isExpanded}
             />
         </div>
         <div className={classNames(styles.editorWrapper, {[styles.disabled]: disabled})}>
