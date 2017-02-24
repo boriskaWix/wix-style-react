@@ -171,7 +171,7 @@ class RichTextArea extends WixComponent {
         .collapseToEnd();
     }
 
-    this.setState({editorState: transform.apply()});
+    this.setEditorState(transform.apply());
   };
 
   render = () => {
