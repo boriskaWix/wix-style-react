@@ -44,6 +44,7 @@ function loadStories() {
   require('../stories/TextField');
   require('../stories/TextArea');
   require('../stories/RichTextArea');
+  require('../stories/Range');
   require('../stories/AutoCompleteComposite');
   require('../stories/Button/CompositeStory');
   require('../stories/Breadcrubms/CompositeStory');

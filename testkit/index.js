@@ -72,4 +72,7 @@ export const radioButtonTestkitFactory = testkitFactoryCreator(radioButtonDriver
 import notificationDriverFactory from '../src/Notification/Notification.driver';
 export const notificationTestkitFactory = testkitFactoryCreator(notificationDriverFactory);
 
+import rangeDriverFactory from '../src/Range/Range.driver';
+export const rangeTestkitFactory = testkitFactoryCreator(rangeDriverFactory);
+
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';

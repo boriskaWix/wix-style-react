@@ -1,0 +1,19 @@
+import React from 'react';
+import {storiesOf} from '@kadira/storybook';
+import InteractiveCodeExample from '../utils/Components/InteractiveCodeExample';
+import Markdown from '../utils/Components/Markdown';
+
+import Readme from '../../src/TextArea/README.md';
+import ExampleStandard from './ExampleStandard';
+
+storiesOf('3. Inputs', module)
+  .add('3.3 Text Area', () => {
+    return (
+      <div>
+        <Markdown source={Readme}/>
+        <InteractiveCodeExample title="Customize a <Range/>">
+          <ExampleStandard/>
+        </InteractiveCodeExample>
+      </div>
+    );
+  });
