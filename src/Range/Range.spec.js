@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import Range from './Range';
+import Input from '../Input';
+import Label from '../Label';
+
 import {rangeTestkitFactory} from '../../testkit';
 import {rangeTestkitFactory as enzymeRangeTestkitFactory} from '../../testkit/enzyme';
 import {mount} from 'enzyme';
@@ -10,18 +13,18 @@ describe('Range', () => {
     it('should exist', () => {
       const div = document.createElement('div');
       const dataHook = 'compHook';
-      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Range dataHook={datahook}/></div>));
-      const textFieldTestkit = rangeTestkitFactory({wrapper, dataHook});
-      expect(textFieldTestkit.exists()).toBeTruthy();
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><Range dataHook={dataHook}><Label /><Input /><Input /></Range></div>));
+      const rangeTestkit = rangeTestkitFactory({wrapper, dataHook});
+      expect(rangeTestkit.exists()).toBeTruthy();
     });
 
     describe('enzyme testkit', () => {
-     /* it('should exist', () => {
+      it('should exist', () => {
         const dataHook = 'myDataHook';
-        const wrapper = mount(<div><Range/></div>);
+        const wrapper = mount(<div><Range dataHook={dataHook}><Label /><Input /><Input /></Range></div>);
         const textFieldTestkit = enzymeRangeTestkitFactory({wrapper, dataHook});
         expect(textFieldTestkit.exists()).toBeTruthy();
-      });*/
+      });
     });
   });
 });
