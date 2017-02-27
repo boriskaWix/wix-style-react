@@ -15,7 +15,7 @@ describe('RangeInputWithLabelComposite', () => {
   const createAutoCompleteDriver = createDriverFactory(autoCompleteCompositeDriverFactory);
 
   it('should remove label wrapping when label not given', () => {
-    const driver = createTextFieldDriver(<RangeInputWithLabelComposite><div><Input/></div><div><Input/></div></RangeInputWithLabelComposite>);
+    const driver = createTextFieldDriver(<RangeInputWithLabelComposite><Input/><Input/></RangeInputWithLabelComposite>);
     expect(driver.hasLabel()).toBe(false);
     expect(driver.getNumberOfChildren()).toBe(2);
   });
