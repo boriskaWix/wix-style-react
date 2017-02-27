@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 
-import TextAreaExample from './RangeTemplate';
+import RangeExample from './RangeTemplate';
 import Input from '../../src/Input';
 import Label from '../../src/Label';
 import ToggleSwitch from '../../src/ToggleSwitch';
@@ -13,6 +13,7 @@ class ExampleStandard extends Component {
     onChange: PropTypes.func
   };
 
+
   state = {
     withLabel: true,
     prefixSuffixValue: '',
@@ -22,10 +23,15 @@ class ExampleStandard extends Component {
     suffixTicker: false,
     label: {
       appearance: 'T1.1',
-      children: 'First name'
+      children: 'Range Label'
     },
-    inputArea: {
-      placeholder: 'Please type in your first name...',
+    firstInput: {
+      placeholder: '0',
+      resizable: false,
+      borderRadius: 0
+    },
+    lastInput: {
+      placeholder: '0',
       resizable: false
     }
   };
@@ -58,7 +64,7 @@ class ExampleStandard extends Component {
                 />
             </div>
           </div>
-          <div className={styles.option}>
+          {/*<div className={styles.option}>
             <Label>Placeholder</Label>
             <div className={styles.flex}>
               <Input size="small"
@@ -92,10 +98,10 @@ class ExampleStandard extends Component {
                 />
               </div>
             </div>
-          </div>
+          </div>*/}
         </div>
         <div className={styles.output}>
-          <TextAreaExample {...this.state} onChange={this.props.onChange}/>
+          <RangeExample {...this.state} onChange={this.props.onChange}/>
         </div>
       </from>
     );

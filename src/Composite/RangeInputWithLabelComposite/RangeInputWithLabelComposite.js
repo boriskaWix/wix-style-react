@@ -6,16 +6,19 @@ import styles from './RangeInputWithLabelComposite.scss';
 class RangeInputWithLabelComposite extends WixComponent {
   render() {
     const children = Children.toArray(this.props.children);
-    return (
-      <div>
-        { children.length === 3 ?
+    const label = children.length === 3 ? children[0] : null;
+    const firstInput = children.length === 3 ? children[1] : children[0];
+    const lastInput = children.length === 3 ? children[2] : children[1];
+    return ( <div className={styles.wrapper}>
+        { !!label ?
           <div className={styles.label}>
-            {first(children)}
-          </div> : null
+          {label}
+        </div> : null
         }
-        { children[1] }
-        { children[2] }
+        { React.cloneElement(firstInput, {customClass: styles.firstinput})}
+        { React.cloneElement(lastInput, {customClass: styles.lastinput})}
       </div>
+
     );
   }
 }

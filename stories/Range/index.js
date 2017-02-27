@@ -3,11 +3,11 @@ import {storiesOf} from '@kadira/storybook';
 import InteractiveCodeExample from '../utils/Components/InteractiveCodeExample';
 import Markdown from '../utils/Components/Markdown';
 
-import Readme from '../../src/TextArea/README.md';
+import Readme from '../../src/Range/README.md';
 import ExampleStandard from './ExampleStandard';
 
 storiesOf('3. Inputs', module)
-  .add('3.3 Text Area', () => {
+  .add('3.3 Range', () => {
     return (
       <div>
         <Markdown source={Readme}/>
