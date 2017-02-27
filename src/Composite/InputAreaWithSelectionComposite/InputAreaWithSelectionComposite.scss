@@ -1,0 +1,12 @@
+.label {
+	margin-bottom: 6px;
+}
+
+.wrapper {
+  display:flex;
+  align-items: center;
+
+  .label {
+    width:100%;
+  }
+}
