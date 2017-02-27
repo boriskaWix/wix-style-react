@@ -53,10 +53,11 @@ class Input extends Component {
       disabled,
       type,
       errorMessage,
-      roundInput
+      roundInput,
+      customClass
     } = this.props;
 
-    const classes = classNames({
+    var classes = {
       [styles.root]: true,
       [styles[`theme-${theme}`]]: true,
       [styles[`size-${size}`]]: true,
@@ -66,7 +67,13 @@ class Input extends Component {
       [styles.hasHover]: forceHover,
       [styles.hasFocus]: forceFocus || this.state.focus,
       [styles.roundInput]: roundInput
-    });
+    };
+
+    if (customClass) {
+      classes[customClass] = true;
+    }
+
+    classes = classNames(classes);
 
     const onIconClicked = () => {
       if (!disabled) {
@@ -249,7 +256,8 @@ Input.propTypes = {
   suffix: PropTypes.node,
   type: PropTypes.node,
   errorMessage: PropTypes.string,
-  roundInput: PropTypes.bool
+  roundInput: PropTypes.bool,
+  customClass: PropTypes.string,
 };
 
 export default Input;

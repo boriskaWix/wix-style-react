@@ -2,7 +2,7 @@ import React, {PropTypes, Component} from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 
 import Range from '../../src/Range';
-import InputArea from '../../src/InputArea';
+import Input from '../../src/Input';
 import Label from '../../src/Label';
 
 export default class Form extends Component {
@@ -11,7 +11,8 @@ export default class Form extends Component {
     onChange: PropTypes.func.isRequired,
     withLabel: PropTypes.bool,
     label: PropTypes.object,
-    inputArea: PropTypes.object
+    firstInput: PropTypes.object,
+    lastInput: PropTypes.object,
   };
 
   componentDidUpdate(props) {
@@ -25,8 +26,9 @@ export default class Form extends Component {
   getComponent() {
     return (
       <Range>
-        {this.props.withLabel ? <Label for="firstName" {...this.props.label}/> : null}
-        <InputArea id="firstName" {...this.props.inputArea}/>
+        {this.props.withLabel ? <Label {...this.props.label}/> : null}
+        <Input id="first" {...this.props.firstInput}/>
+        <Input id="last" {...this.props.lastInput}/>
       </Range>
     );
   }
