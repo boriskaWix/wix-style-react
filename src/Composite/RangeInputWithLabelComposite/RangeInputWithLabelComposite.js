@@ -3,21 +3,24 @@ import WixComponent from '../../WixComponent';
 import styles from './RangeInputWithLabelComposite.scss';
 
 class RangeInputWithLabelComposite extends WixComponent {
+
+
   render() {
     const children = Children.toArray(this.props.children);
     const label = children.length === 3 ? children[0] : null;
     const firstInput = children.length === 3 ? children[1] : children[0];
     const lastInput = children.length === 3 ? children[2] : children[1];
     return (<div className={styles.wrapper}>
-      {label ?
+      { label ?
         <div className={styles.label}>
           {label}
         </div> : null
       }
-      { React.cloneElement(firstInput, {customClass: styles.firstinput})}
-      { React.cloneElement(lastInput, {customClass: styles.lastinput})}
-    </div>
-    );
+      <div className={styles.inputs}>
+        { React.cloneElement(firstInput, {noRightBorderRadius: styles.firstinput})}
+        { React.cloneElement(lastInput, {noLeftBorderRadius: styles.lastinput})}
+      </div>
+    </div>);
   }
 }
 
