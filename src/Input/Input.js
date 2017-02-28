@@ -54,7 +54,8 @@ class Input extends Component {
       type,
       errorMessage,
       roundInput,
-      customClass
+      noLeftBorderRadius,
+      noRightBorderRadius
     } = this.props;
 
     let classes = {
@@ -69,8 +70,12 @@ class Input extends Component {
       [styles.roundInput]: roundInput
     };
 
-    if (customClass) {
-      classes[customClass] = true;
+    if (noRightBorderRadius) {
+      classes[noRightBorderRadius] = true;
+    }
+
+    if (noLeftBorderRadius) {
+      classes[noLeftBorderRadius] = true;
     }
 
     classes = classNames(classes);
@@ -257,7 +262,8 @@ Input.propTypes = {
   type: PropTypes.node,
   errorMessage: PropTypes.string,
   roundInput: PropTypes.bool,
-  customClass: PropTypes.string,
+  noLeftBorderRadius: PropTypes.string,
+  noRightBorderRadius: PropTypes.string
 };
 
 export default Input;
