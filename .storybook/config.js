@@ -50,6 +50,7 @@ function loadStories() {
   require('../stories/Breadcrubms/CompositeStory');
   require('../stories/Tabs');
   require('../stories/Notification');
+  require('../stories/FieldWithSelectionComposite');
 }
 
 configure(loadStories, module);

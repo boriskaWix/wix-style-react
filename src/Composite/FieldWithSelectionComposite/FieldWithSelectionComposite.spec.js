@@ -1,26 +1,26 @@
 import React from 'react';
-import InputAreaWithSelectionComposite from './InputAreaWithSelectionComposite';
+import FieldWithSelectionComposite from './FieldWithSelectionComposite';
 import Label from '../../Label';
 import Input from '../../Input';
 import InputArea from '../../InputArea';
 import Checkbox from '../../Checkbox';
-import inputAreaWithSelectionCompositeDriverFactory from './InputAreaWithSelectionComposite.driver';
+import FieldWithSelectionCompositeDriverFactory from './FieldWithSelectionComposite.driver';
 import {createDriverFactory} from '../../test-common';
 import AutoComplete from '../../AutoComplete';
 
-describe('InputAreaWithSelectionComposite', () => {
-  const createCompositeDriverFactory = createDriverFactory(inputAreaWithSelectionCompositeDriverFactory);
+describe('FieldWithSelectionComposite', () => {
+  const createCompositeDriverFactory = createDriverFactory(FieldWithSelectionCompositeDriverFactory);
 
   it('should remove label wrapping when label not given', () => {
-    const driver = createCompositeDriverFactory(<InputAreaWithSelectionComposite><Input/><Checkbox/></InputAreaWithSelectionComposite>);
+    const driver = createCompositeDriverFactory(<FieldWithSelectionComposite><Input/><Checkbox/></FieldWithSelectionComposite>);
     expect(driver.hasLabel()).toBe(false);
-    expect(driver.getNumberOfChildren()).toBe(2);
+    expect(driver.getNumberOfChildren()).toBe(1);
     expect(driver.hasInput()).toBe(true);
     expect(driver.hasSelectionInput()).toBe(true);
   });
 
   it('should render Label with Input', () => {
-    const driver = createCompositeDriverFactory(<InputAreaWithSelectionComposite><Label>myLabel</Label><Input/><Checkbox/></InputAreaWithSelectionComposite>);
+    const driver = createCompositeDriverFactory(<FieldWithSelectionComposite><Label>myLabel</Label><Input/><Checkbox/></FieldWithSelectionComposite>);
     expect(driver.hasLabel()).toBe(true);
     expect(driver.getLabel()).toBe('myLabel');
     expect(driver.hasInput()).toBe(true);
@@ -28,14 +28,14 @@ describe('InputAreaWithSelectionComposite', () => {
   });
 
   it('should render Label with InputArea', () => {
-    const driver = createCompositeDriverFactory(<InputAreaWithSelectionComposite><Label/><InputArea/><Checkbox/></InputAreaWithSelectionComposite>);
+    const driver = createCompositeDriverFactory(<FieldWithSelectionComposite><Label/><InputArea/><Checkbox/></FieldWithSelectionComposite>);
     expect(driver.hasLabel()).toBe(true);
     expect(driver.hasInput()).toBe(true);
     expect(driver.hasSelectionInput()).toBe(true);
   });
 
   it('should render Label with AutoComplete', () => {
-    const driver = createCompositeDriverFactory(<InputAreaWithSelectionComposite><Label/><AutoComplete/><Checkbox/></InputAreaWithSelectionComposite>);
+    const driver = createCompositeDriverFactory(<FieldWithSelectionComposite><Label/><AutoComplete/><Checkbox/></FieldWithSelectionComposite>);
     expect(driver.hasLabel()).toBe(true);
     expect(driver.hasSelectionInput()).toBe(true);
   });

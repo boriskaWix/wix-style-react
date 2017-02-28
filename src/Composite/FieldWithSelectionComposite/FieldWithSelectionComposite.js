@@ -1,9 +1,9 @@
 import React, {Children} from 'react';
-import {first, last} from 'lodash/fp';
+import {first} from 'lodash/fp';
 import WixComponent from '../../WixComponent';
-import styles from './InputAreaWithSelectionComposite.scss';
+import styles from './FieldWithSelectionComposite.scss';
 
-class InputAreaWithSelectionComposite extends WixComponent {
+class FieldWithSelectionComposite extends WixComponent {
   render() {
     const children = Children.toArray(this.props.children);
     const label = children.length === 3 ? (
@@ -17,17 +17,19 @@ class InputAreaWithSelectionComposite extends WixComponent {
     return (
       <div className={styles.wrapper}>
         {label}
-        {textInput}
-        {selectionInput}
+        <div className={styles.inputs}>
+          {textInput}
+          {selectionInput}
+        </div>
       </div>
     );
   }
 }
 
-InputAreaWithSelectionComposite.propTypes = {
+FieldWithSelectionComposite.propTypes = {
   children: React.PropTypes.any
 };
 
-InputAreaWithSelectionComposite.displayName = 'InputAreaWithSelectionComposite';
+FieldWithSelectionComposite.displayName = 'FieldWithSelectionComposite';
 
-export default InputAreaWithSelectionComposite;
+export default FieldWithSelectionComposite;

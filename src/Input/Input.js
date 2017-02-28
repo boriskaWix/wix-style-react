@@ -57,7 +57,7 @@ class Input extends Component {
       customClass
     } = this.props;
 
-    var classes = {
+    let classes = {
       [styles.root]: true,
       [styles[`theme-${theme}`]]: true,
       [styles[`size-${size}`]]: true,
