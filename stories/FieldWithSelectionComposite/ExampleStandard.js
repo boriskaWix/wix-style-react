@@ -3,6 +3,7 @@ import React, {Component, PropTypes} from 'react';
 import FieldWithSelectionTemplate from './FieldWithSelectionTemplate';
 import Input from '../../src/Input';
 import Label from '../../src/Label';
+import RadioGroup from '../../src/RadioGroup';
 import ToggleSwitch from '../../src/ToggleSwitch';
 
 import styles from './ExampleStandard.scss';
@@ -13,7 +14,6 @@ class ExampleStandard extends Component {
     onChange: PropTypes.func
   };
 
-
   state = {
     withLabel: true,
     prefixSuffixValue: '',
@@ -21,6 +21,9 @@ class ExampleStandard extends Component {
     prefixTicker: false,
     suffixUnit: '',
     suffixTicker: false,
+    error: false,
+    disabled: false,
+    selectionInput: 'checkbox',
     label: {
       appearance: 'T1.1',
       children: 'Field With Selection Label'
@@ -48,20 +51,60 @@ class ExampleStandard extends Component {
   render() {
     return (
       <from className={styles.form}>
-        <div className={styles.input}>
-          <div className={styles.option}>
-            <Label>Show label</Label>
-            <div className={styles.flex}>
-              <Input
-                size="small"
-                value={this.state.label.children}
-                onChange={e => this.setComponentState('label', {children: e.target.value})}
-                />&nbsp;
-              <ToggleSwitch
-                size="small"
-                checked={this.state.withLabel}
-                onChange={() => this.setState({withLabel: !this.state.withLabel})}
-                />
+        <div>
+          <div className={styles.input}>
+            <div className={styles.option}>
+              <Label>Show label</Label>
+              <div className={styles.flex}>
+                <Input
+                  size="small"
+                  value={this.state.label.children}
+                  onChange={e => this.setComponentState('label', {children: e.target.value})}
+                  />&nbsp;
+                <ToggleSwitch
+                  size="small"
+                  checked={this.state.withLabel}
+                  onChange={() => this.setState({withLabel: !this.state.withLabel})}
+                  />
+              </div>
+            </div>
+          </div>
+          <div className={styles.controlGroup}>
+            <Label>Selection Input Type</Label>
+            <div className={styles.radioGroup}>
+              <RadioGroup
+                display="horizontal"
+                value={this.state.selectionInput}
+                onChange={selectionInput => this.setState({selectionInput})}>
+                <RadioGroup.Radio value={'checkbox'}>Checkbox</RadioGroup.Radio>
+                <RadioGroup.Radio value={'dropdown'}>Dropdown</RadioGroup.Radio>
+              </RadioGroup>
+            </div>
+          </div>
+          <div className={styles.controlGroup}>
+            <Label>Error</Label>
+            <div className={styles.radioGroup}>
+              <RadioGroup
+                display="horizontal"
+                value={this.state.error}
+                onChange={error => this.setState({error})}
+              >
+                <RadioGroup.Radio value={false}>False</RadioGroup.Radio>
+                <RadioGroup.Radio value={true}>True</RadioGroup.Radio>
+              </RadioGroup>
+            </div>
+          </div>
+          <div className={styles.controlGroup}>
+            <Label>Disabled</Label>
+            <div className={styles.radioGroup}>
+              <RadioGroup
+                display="horizontal"
+                value={this.state.disabled}
+                onChange={disabled => this.setState({disabled})}
+              >
+                <RadioGroup.Radio value={false}>False</RadioGroup.Radio>
+                <RadioGroup.Radio value={true}>True</RadioGroup.Radio>
+              </RadioGroup>
             </div>
           </div>
         </div>
