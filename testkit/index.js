@@ -75,8 +75,8 @@ export const notificationTestkitFactory = testkitFactoryCreator(notificationDriv
 import rangeDriverFactory from '../src/Range/Range.driver';
 export const rangeTestkitFactory = testkitFactoryCreator(rangeDriverFactory);
 
-import inputAreaWithSelectionCompositeDriverFactory from '../src/Composite/InputAreaWithSelectionComposite/InputAreaWithSelectionComposite.driver';
-export const inputAreaWithSelectionCompositeTestkitFactory = testkitFactoryCreator(inputAreaWithSelectionCompositeDriverFactory);
+import fieldWithSelectionCompositeDriverFactory from '../src/Composite/FieldWithSelectionComposite/FieldWithSelectionComposite.driver';
+export const fieldWithSelectionCompositeTestkitFactory = testkitFactoryCreator(fieldWithSelectionCompositeDriverFactory);
 
 
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
