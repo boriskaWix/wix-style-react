@@ -6,7 +6,6 @@ import InputArea from '../../InputArea';
 import Checkbox from '../../Checkbox';
 import FieldWithSelectionCompositeDriverFactory from './FieldWithSelectionComposite.driver';
 import {createDriverFactory} from '../../test-common';
-import AutoComplete from '../../AutoComplete';
 
 describe('FieldWithSelectionComposite', () => {
   const createCompositeDriverFactory = createDriverFactory(FieldWithSelectionCompositeDriverFactory);
@@ -31,12 +30,6 @@ describe('FieldWithSelectionComposite', () => {
     const driver = createCompositeDriverFactory(<FieldWithSelectionComposite><Label/><InputArea/><Checkbox/></FieldWithSelectionComposite>);
     expect(driver.hasLabel()).toBe(true);
     expect(driver.hasInput()).toBe(true);
-    expect(driver.hasSelectionInput()).toBe(true);
-  });
-
-  it('should render Label with AutoComplete', () => {
-    const driver = createCompositeDriverFactory(<FieldWithSelectionComposite><Label/><AutoComplete/><Checkbox/></FieldWithSelectionComposite>);
-    expect(driver.hasLabel()).toBe(true);
     expect(driver.hasSelectionInput()).toBe(true);
   });
 });
