@@ -1,10 +1,10 @@
 import inputDriverFactory from '../Input/Input.driver';
 
-const rangeDriverFactory = ({component, wrapper}) => {
-  const label = component.childNodes[0];
-  const input = component.childNodes[1];
+const rangeDriverFactory = ({element, wrapper}) => {
+  const label = element.childNodes[0];
+  const input = element.childNodes[1];
   return {
-    ...inputDriverFactory({component, wrapper}),
+    ...inputDriverFactory({element, wrapper}),
     getInput: () => input,
     hasInput: () => input.childNodes[0].tagName.toLowerCase() === 'input',
     getLabel: () => label,
