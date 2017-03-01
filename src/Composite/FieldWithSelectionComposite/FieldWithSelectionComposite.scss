@@ -1,3 +1,5 @@
+@import '../../common.scss';
+
 .label {
 	margin-bottom: 6px;
   width:100%;
@@ -6,17 +8,17 @@
 .inputs {
   display:flex;
   align-items: center;
-  background: #eaf7ff;
+  background: $B50;
   box-sizing: border-box;
   border-radius: 6px;
-  border:solid 1px #c6e2f7;
+  border:solid 1px $B30;
 
   >div:first-child {
     flex-grow: 1;
     border-top:none;
     border-bottom:none;
     border-left:none;
-    border-right:solid 1px #c6e2f7;
+    border-right:solid 1px $B30;
     border-bottom-right-radius:0;
     border-top-right-radius: 0;
 
@@ -24,7 +26,7 @@
 
   &.disabled {
     >div:first-child {
-      border-right:solid 1px #dadada;
+      border-right:solid 1px $GR20;
     }
   }
   >div:last-child {
@@ -36,7 +38,7 @@
   }
 
   &.dropdown {
-    background:white;
+    background:$D80;
 
     >div:last-child {
       padding: 0;
@@ -49,9 +51,9 @@
 }
 
 .error {
-  border:solid #ee5951 1px;
+  border:solid $R10 1px;
 }
 
 .disabled {
-  border:solid 1px #dadada;
+  border:solid 1px $GR20;
 }
