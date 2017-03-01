@@ -12,7 +12,6 @@ class RadioButton extends WixComponent {
 
   render() {
     const {value, vAlign, checked, disabled, name, type, onChange, style} = this.props;
-    const {value, vAlign, checked, disabled, name, onChange, style} = this.props;
 
     const radioClasses = classNames({
       [styles.radio]: true,
@@ -43,7 +42,7 @@ class RadioButton extends WixComponent {
             </button>
           </div>
         ) : (
-          <div className={styles.radioWrapper}>
+          <div className={styles.radioWrapper} style={style}>
             <input
               type="radio"
               name={name}
