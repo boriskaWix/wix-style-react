@@ -44,13 +44,13 @@ function loadStories() {
   require('../stories/TextField');
   require('../stories/TextArea');
   require('../stories/RichTextArea');
+  require('../stories/FieldWithSelectionComposite');
   require('../stories/Range');
   require('../stories/AutoCompleteComposite');
   require('../stories/Button/CompositeStory');
   require('../stories/Breadcrubms/CompositeStory');
   require('../stories/Tabs');
   require('../stories/Notification');
-  require('../stories/FieldWithSelectionComposite');
 }
 
 configure(loadStories, module);

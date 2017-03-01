@@ -6,14 +6,20 @@ import Input from '../../src/Input';
 import Checkbox from '../../src/Checkbox';
 import Label from '../../src/Label';
 import Dropdown from '../../src/Dropdown';
+import RadioGroup from '../../src/RadioGroup';
 
 const options = [
   {id: 1, value: '1'},
   {id: 2, value: '2'},
 ];
 
-
 export default class Form extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      buttonValue: 0,
+    }
+  }
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
@@ -40,6 +46,18 @@ export default class Form extends Component {
         break;
       case 'dropdown':
         selectionInput = <Dropdown options={options} dropDirectionUp size="normal" selectedId={1}/>;
+        break;
+      case 'buttons':
+        selectionInput = (
+          <RadioGroup
+            display="horizontal"
+            type="button"
+            value={this.state.buttonValue}
+            onChange={value => this.setState({buttonValue: value})}>
+            <RadioGroup.Radio value={1} disabled={this.props.disabled}>On</RadioGroup.Radio>
+            <RadioGroup.Radio value={0} disabled={this.props.disabled}>Off</RadioGroup.Radio>
+          </RadioGroup>
+        );
         break;
     }
 

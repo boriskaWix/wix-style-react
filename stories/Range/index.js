@@ -7,7 +7,7 @@ import Readme from '../../src/Range/README.md';
 import ExampleStandard from './ExampleStandard';
 
 storiesOf('3. Inputs', module)
-  .add('3.3 Range', () => {
+  .add('3.7 Range', () => {
     return (
       <div>
         <Markdown source={Readme}/>

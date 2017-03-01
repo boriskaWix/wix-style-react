@@ -78,6 +78,7 @@ class ExampleStandard extends Component {
                 onChange={selectionInput => this.setState({selectionInput})}>
                 <RadioGroup.Radio value={'checkbox'}>Checkbox</RadioGroup.Radio>
                 <RadioGroup.Radio value={'dropdown'}>Dropdown</RadioGroup.Radio>
+                <RadioGroup.Radio value={'buttons'}>Buttons</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>
