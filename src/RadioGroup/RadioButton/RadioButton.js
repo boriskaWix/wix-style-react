@@ -76,7 +76,8 @@ RadioButton.propTypes = {
   checked: PropTypes.bool,
   disabled: PropTypes.bool,
   children: PropTypes.any,
-  style: PropTypes.object
+  style: PropTypes.object,
+  type: PropTypes.string,
 };
 
 RadioButton.displayName = 'RadioGroup.Button';
